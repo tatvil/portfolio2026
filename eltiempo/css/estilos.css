@@ -248,3 +248,36 @@ footer {
 }
 
 .termometro.templado { fill: #4caf50; }
+
+#mes-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.mes-btn {
+    background: rgba(20, 20, 20, 0.8);
+    color: var(--color-acento);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'EB Garamond', serif;
+}
+
+.mes-btn:hover {
+    background: rgba(31, 53, 88, 0.9);
+    transform: translateY(-2px);
+}
+
+#mes-nombre {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--color-acento);
+    min-width: 80px;
+    text-align: center;
+}
