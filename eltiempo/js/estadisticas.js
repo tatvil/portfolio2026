@@ -104,7 +104,7 @@ function renderTrend(data) {
     });
 
     const container = $("trend-container");
-    container.innerHTML = "";
+    container.innerHTML = "<table><tr><th>Año</th><th>Temp. Máx. Avg</th><th>Temp. Mín. Avg</th><th>Lluvia Total</th></tr>";
 
     Object.keys(byYear)
         .sort()
@@ -114,14 +114,15 @@ function renderTrend(data) {
             const rainTotal = (byYear[year].rain.reduce((a, b) => a + b, 0)).toFixed(1);
 
             container.innerHTML += `
-                <p>
-                    <strong>${year}</strong> →
-                    Máx ${maxAvg}°C ·
-                    Mín ${minAvg}°C ·
-                    Lluvia ${rainTotal} mm
-                </p>
+                <tr>
+                    <td><strong>${year}</strong> </td>
+                    <td>${maxAvg}°C</td>
+                    <td>${minAvg}°C</td>
+                    <td>${rainTotal} mm</td>
+                </tr>
             `;
         });
+    container.innerHTML += "</table>";
 }
 
 /* ---------- INIT ---------- */
