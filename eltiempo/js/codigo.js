@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
     santoDelDia();
     loadBulletSummary();
     getMoonPhase();
-    generateMiniMoonCalendar();
+//    generateMiniMoonCalendar();
 
     // Inicializar sol/luna + tiempo actual con una sola geolocalización
     initApp();
