@@ -240,7 +240,7 @@ function generateMiniMoonCalendar() {
     const month = now.getMonth();
     const today = now.getDate();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const container = document.getElementById("moon-mini-calendar");
+ //   const container = document.getElementById("moon-mini-calendar");
 
     //container.innerHTML = ".";
 
