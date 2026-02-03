@@ -28,6 +28,8 @@ async function santoDelDia() {
     const hoy = new Date();
     const offset = hoy.getTimezoneOffset() * 60000;
     const fechaISO = new Date(hoy - offset).toISOString().split('T')[0];
+    const santoDelDiaElem = document.getElementById("santo-del-dia");
+
 
     try {
         const res = await fetch('data/santos.json');
@@ -38,7 +40,6 @@ async function santoDelDia() {
         if (elSanto) {
             document.getElementById("santo-del-dia").textContent = elSanto.santo;
             santoDelDiaElem.textContent = elSanto.santo;
-            descripcionSantoDelDiaElem.textContent = elSanto.descripcion || "";
         }
     } catch (e) {
         console.error("Error en la carga de santos:", e);
@@ -68,7 +69,7 @@ async function getLocationName(lat, lon) {
             if (data.address.city) return data.address.city + ", " + data.address.country;
             if (data.address.town) return data.address.town + ", " + data.address.country;
             if (data.address.village) return data.address.village + ", " + data.address.country;
-            if (data.address.hamlet) return data.address.hamlet + ", " + data.address.country;
+ //           if (data.address.hamlet) return data.address.hamlet + ", " + data.address.country;
         }
 
         return "Ubicación desconocida";
@@ -241,7 +242,7 @@ function generateMiniMoonCalendar() {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const container = document.getElementById("moon-mini-calendar");
 
-    container.innerHTML = "";
+    //container.innerHTML = ".";
 
     let firstDay = new Date(year, month, 1).getDay();
     firstDay = (firstDay === 0) ? 6 : firstDay - 1;
@@ -250,7 +251,7 @@ function generateMiniMoonCalendar() {
         const empty = document.createElement("div");
         empty.classList.add("moon-day");
         empty.style.visibility = "hidden";
-        container.appendChild(empty);
+   //     container.appendChild(empty);
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
@@ -260,7 +261,7 @@ function generateMiniMoonCalendar() {
         if (day === today) div.classList.add("moon-today");
 
         div.innerHTML = `<span>${day}</span><span class="moon-icon">${icon}</span>`;
-        container.appendChild(div);
+//        container.appendChild(div);
     }
 }
 

@@ -7,6 +7,7 @@
     --accent-orange: #ff9900;
     --light-gold: #ffc24a;
     --bg-dark: #0f172a; /* Fondo muy oscuro para contraste */
+    --gray: #acb3bf;
 }
 
 body {
@@ -107,6 +108,13 @@ body {
 .card-text {
     color: white !important;
 }
+
+.card-tecnologia {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--gray) !important;
+}
+
 .btn-link {
     color: var(--light-blue);
     text-decoration: none;
