@@ -1,5 +1,5 @@
 // API URL absoluta
-const API_URL = "http://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-reverse.php?ciudad=madrid";
+const API_URL = "/eltiempo/servidor/api-weather-reverse.php?ciudad=madrid";
 
 // ====================
 // Helper
