@@ -918,20 +918,20 @@ INSERT INTO `tipo_dia_internacional` (`id`, `nombre`) VALUES
 -- Estructura de tabla para la tabla `weather`
 --
 
-CREATE TABLE `weather` (
-  `id` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `ciudad` varchar(30) NOT NULL,
-  `amanecer` time NOT NULL,
-  `anochecer` time NOT NULL,
-  `temp_min` int(11) NOT NULL,
-  `temp_max` int(11) NOT NULL,
-  `humedad` int(11) NOT NULL,
-  `viento_velocidad` int(11) NOT NULL,
-  `viento_direccion` int(11) NOT NULL,
-  `nubes` int(11) NOT NULL,
-  `lluvia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- CREATE TABLE `weather` (
+--   `id` int(11) NOT NULL,
+--   `fecha` date NOT NULL,
+--   `ciudad` varchar(30) NOT NULL,
+--   `amanecer` time NOT NULL,
+--   `anochecer` time NOT NULL,
+--   `temp_min` int(11) NOT NULL,
+--   `temp_max` int(11) NOT NULL,
+--   `humedad` int(11) NOT NULL,
+--   `viento_velocidad` int(11) NOT NULL,
+--   `viento_direccion` int(11) NOT NULL,
+--   `nubes` int(11) NOT NULL,
+--   `lluvia` int(11) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `weather`
