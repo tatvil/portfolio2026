@@ -503,8 +503,7 @@ INSERT INTO `municipios` (`cod_postal`, `nombre`, `provincia`) VALUES
 ('28290', 'Las Rozas de Madrid', 28),
 ('28924', 'Alcorcon', 28),
 ('33003', 'Oviedo', 33),
-('43895', 'Ampolla', 43),
-('725', 'Calle Panama', 0);
+('43895', 'Ampolla', 43);
 
 -- --------------------------------------------------------
 
