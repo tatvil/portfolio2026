@@ -108,9 +108,9 @@ function renderTrend(data) {
         html += `
             <tr>
                 <td><strong>${year}</strong></td>
-                <td>Máx ${maxAvg}°C</td>
-                <td>Mín ${minAvg}°C</td>
-                <td>Lluvia ${rainTotal} mm</td>
+                <td>${maxAvg}°C</td>
+                <td>${minAvg}°C</td>
+                <td>${rainTotal} mm</td>
             </tr>
         `;
     });
