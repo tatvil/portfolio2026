@@ -1,6 +1,5 @@
 // API URL absoluta
 const API_URL = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-reverse.php?ciudad=madrid";
-//"/eltiempo/servidor/api-weather-reverse.php?ciudad=madrid";
 
 // ====================
 // Helper
@@ -77,6 +76,7 @@ function renderMonthStats(data) {
 function renderTrend(data) {
     const byYear = {};
 
+    // Agrupar datos por año para el mes seleccionado
     data.forEach(d => {
         const date = new Date(d.dia);
         if (date.getMonth() === selectedMonth) {
@@ -89,14 +89,23 @@ function renderTrend(data) {
     });
 
     const container = $("trend-container");
-    container.innerHTML = "<table><thead><tr><th>Año</th><th>Máx</th><th>Mín</th><th>Lluvia</th></tr></thead><tbody>";
 
-    Object.keys(byYear).sort().forEach(year => {
+    // Si no hay datos para el mes, mostrar mensaje
+    if (Object.keys(byYear).length === 0) {
+        container.innerHTML = "<p>No hay datos históricos para este mes.</p>";
+        return;
+    }
+
+    // Construir tabla completa en una variable
+    let html = "<table class=\"trend-table\"><thead><tr><th>Año</th><th>Máx</th><th>Mín</th><th>Lluvia</th></tr></thead><tbody>";
+
+    // Ordenar años de más reciente a más antiguo
+    Object.keys(byYear).sort((a, b) => b - a).forEach(year => {
         const maxAvg = (byYear[year].max.reduce((a,b)=>a+b,0)/byYear[year].max.length).toFixed(1);
         const minAvg = (byYear[year].min.reduce((a,b)=>a+b,0)/byYear[year].min.length).toFixed(1);
         const rainTotal = byYear[year].rain.reduce((a,b)=>a+b,0).toFixed(1);
 
-        container.innerHTML += `
+        html += `
             <tr>
                 <td><strong>${year}</strong></td>
                 <td>Máx ${maxAvg}°C</td>
@@ -105,8 +114,13 @@ function renderTrend(data) {
             </tr>
         `;
     });
-    container.innerHTML += "</tbody></table>";
+
+    html += "</tbody></table>";
+
+    // Insertar tabla en el contenedor
+    container.innerHTML = html;
 }
+
 
 // ====================
 // Botones de mes

@@ -281,3 +281,85 @@ footer {
     min-width: 80px;
     text-align: center;
 }
+
+/* =======================
+   Tabla de tendencia
+   ======================= */
+.trend-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Cabecera */
+.trend-table thead {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.trend-table thead th {
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Filas del cuerpo */
+.trend-table tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.trend-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.trend-table tbody td {
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Colores según tipo de dato */
+.trend-table tbody td:nth-child(2) { /* Máx */
+    color: #e74c3c; /* rojo */
+    font-weight: 600;
+}
+
+.trend-table tbody td:nth-child(3) { /* Mín */
+    color: #3498db; /* azul */
+    font-weight: 600;
+}
+
+.trend-table tbody td:nth-child(4) { /* Lluvia */
+    color: #27ae60; /* verde */
+    font-weight: 600;
+}
+
+/* Hover para destacar fila */
+.trend-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Adaptable a móviles */
+@media (max-width: 600px) {
+    .trend-table thead {
+        display: none;
+    }
+    .trend-table tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    .trend-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        text-align: left;
+    }
+}
