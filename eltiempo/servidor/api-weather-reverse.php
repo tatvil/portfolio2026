@@ -1,5 +1,7 @@
 <?php
-header('Content-Type: application/json');
+// Permitir solicitudes desde cualquier origen (CORS)
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json; charset=utf-8');
 
 // --- 1. Database Configuration (Example with external config) ---
 // In a real scenario, this would come from a file outside the web root.
@@ -74,12 +76,10 @@ if ($result->num_rows > 0) {
     http_response_code(200); // OK
     echo json_encode($datos);
 } else {
-    // It's usually fine to return 200 OK with an empty array or a specific message
-    // if no data is found, rather than a 404, unless it signifies a resource that
-    // *should* exist but doesn't. For a query, 200 OK is typical.
-    http_response_code(200); // OK
-    echo json_encode(["message" => "No hay datos para la ciudad especificada"]);
+    http_response_code(200);
+    echo json_encode([]); // array vacío
 }
+
 
 // --- 5. Close Resources ---
 $stmt->close();
