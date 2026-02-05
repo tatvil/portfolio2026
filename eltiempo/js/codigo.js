@@ -79,7 +79,7 @@ async function getLocationName(lat, lon) {
 }
 
 /* ==============================================
-   TARJETA SOL / ANOCHECER
+   TARJETA AMANECER / ANOCHECER
 ============================================== */
 async function getSunTimes(lat, lon) {
     const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&formatted=0`;
@@ -146,26 +146,37 @@ async function updateSunCard(lat, lon) {
 /* ==============================================
    TIEMPO ACTUAL
 ============================================== */
+/* ==============================================
+   TIEMPO ACTUAL (CORREGIDO)
+============================================== */
 async function getWeather(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    // Open-Meteo API
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=celsius&windspeed_unit=kmh&timezone=auto`;
+    // Usamos 'current' para obtener datos en tiempo real
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,rain,precipitation,wind_speed_10m&timezone=auto`;
+    
+    console.log("Fetching weather from:", url);
 
     try {
         const res = await fetch(url);
+        if (!res.ok) throw new Error("Error en la red");
+        
         const data = await res.json();
-        const weather = data.current_weather;
+        
+        // La API devuelve los datos dentro de 'current'
+        const current = data.current;
 
-        document.getElementById("temperature").textContent = `${weather.temperature}°C`;
-        document.getElementById("condition").textContent = `Viento ${weather.windspeed} km/h`;
-        document.getElementById("humidity").textContent = "N/A";
-        document.getElementById("wind").textContent = "N/A";
+        // Inyectamos los datos en tu HTML asegurándonos de que los IDs coinciden
+        document.getElementById("temperature").textContent = `${current.temperature_2m}°C`;
+        document.getElementById("rain").textContent = `${current.rain} mm`;
+        document.getElementById("precipitation").textContent = `${current.precipitation} mm`;
+        document.getElementById("humidity").textContent = `${current.relative_humidity_2m}%`;
+        document.getElementById("wind").textContent = `${current.wind_speed_10m} km/h`;
 
     } catch (err) {
-        document.getElementById("location").textContent = "Error al obtener el tiempo";
-        console.error(err);
+        console.error("Error en el tiempo:", err);
+        // Evitamos machacar el ID 'location' para no borrar el nombre de la ciudad
     }
 }
 
