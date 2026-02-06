@@ -1,5 +1,6 @@
 // API URL absoluta
 const API_URL = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather.php?ciudad=madrid";
+const API_URL_TODAY = "https://aplicacionesdevanguardia.es/eltiempo/servidor/weather-hoy.php?ciudad=madrid";
 
 // ====================
 // Helper
@@ -21,6 +22,24 @@ function updateMonthHeader() {
 async function loadStats() {
     try {
         const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Error cargando datos: " + response.status);
+
+        const data = await response.json();
+
+        if (!data || !data.length) throw new Error("Datos vacíos");
+
+        renderLastData(data);
+        renderMonthStats(data);
+        renderTrend(data);
+    } catch (err) {
+        console.error(err);
+        $("stats-location").textContent = "Error cargando datos";
+    }
+}
+
+async function loadStatsToday() {
+    try {
+        const response = await fetch(API_URL_TODAY);
         if (!response.ok) throw new Error("Error cargando datos: " + response.status);
 
         const data = await response.json();
@@ -128,17 +147,20 @@ function renderTrend(data) {
 document.addEventListener("DOMContentLoaded", () => {
     updateMonthHeader();
     loadStats();
+    loadStatsToday();
 
     $("prev-month").addEventListener("click", () => {
         selectedMonth = (selectedMonth + 11) % 12;
         updateMonthHeader();
         loadStats();
+        loadStatsToday();
     });
 
     $("next-month").addEventListener("click", () => {
         selectedMonth = (selectedMonth + 1) % 12;
         updateMonthHeader();
         loadStats();
+        loadStatsToday();
     });
 
     $("year").textContent = new Date().getFullYear();

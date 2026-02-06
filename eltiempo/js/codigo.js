@@ -1,3 +1,6 @@
+// API URL absoluta
+const API_URL = "https://aplicacionesdevanguardia.es/eltiempo/servidor/weather-hoy.php?ciudad=madrid";
+
 /* ==============================================
    FUNCIONES AUXILIARES
 ============================================== */
@@ -145,9 +148,6 @@ async function updateSunCard(lat, lon) {
 
 /* ==============================================
    TIEMPO ACTUAL
-============================================== */
-/* ==============================================
-   TIEMPO ACTUAL (CORREGIDO)
 ============================================== */
 async function getWeather(position) {
     const lat = position.coords.latitude;

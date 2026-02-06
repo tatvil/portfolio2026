@@ -54,7 +54,7 @@ $stmt = $conn->prepare("
     WHERE DATE(fecha) >= '2024-10-01'
         AND ciudad LIKE CONCAT('%', ?, '%')
     GROUP BY DATE(fecha)
-    ORDER BY DATE(fecha)
+    ORDER BY DATE(fecha);
 ");
 
 if (!$stmt) {
