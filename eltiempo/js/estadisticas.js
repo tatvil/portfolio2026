@@ -39,7 +39,7 @@ async function loadStats() {
 
 async function loadStatsToday() {
     try {
-        const response = await fetch(API_URL_TODAY);
+        const response = await fetch(API_URL);
         if (!response.ok) throw new Error("Error cargando datos: " + response.status);
 
         const data = await response.json();
@@ -67,7 +67,7 @@ function renderLastData(data) {
     $("last-wind").textContent = last.viento_velocidad + " km/h";
     $("last-sunrise").textContent = last.amanecer;
     $("last-sunset").textContent = last.anochecer;
-}
+} 
 
 // ====================
 // Estadísticas del mes seleccionado
