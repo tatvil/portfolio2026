@@ -179,6 +179,14 @@ tr:hover td {
     background: rgba(95, 174, 219, 0.07);
 }
 
+.nota {
+    background: rgba(95, 174, 219, 0.1);
+    border-left: 4px solid var(--color-acento);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    color: var(--color-texto);
+}
+
 /* ======================
    ACCESIBILIDAD
 ====================== */
@@ -194,6 +202,6 @@ a:focus-visible {
 @media (max-width: 600px) {
   body {
     padding: 0.5rem;
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
 }
