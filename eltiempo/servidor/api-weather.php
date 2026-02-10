@@ -46,7 +46,7 @@ $stmt = $conn->prepare("
            MAX(temp_max) AS temp_max,
            MIN(temp_min) AS temp_min,
            AVG(humedad) AS humedad,
-           AVG(lluvia) AS lluvia,
+           SUM(lluvia) AS lluvia,
            AVG(nubes) AS nubes,
            AVG(viento_velocidad) AS viento_velocidad,
            AVG(viento_direccion) AS viento_direccion
