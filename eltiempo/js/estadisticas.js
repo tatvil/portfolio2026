@@ -82,11 +82,13 @@ function renderMonthStats(data) {
     const lluvia = monthData.reduce((sum, d) => sum + parseFloat(d.lluvia), 0);
     const humedad = (monthData.reduce((sum, d) => sum + parseFloat(d.humedad), 0) / monthData.length).toFixed(1);
 
+    const lluviamedia = lluvia/monthData.length; // media de lluvia diaria
+
     $("month-days").textContent = monthData.length;
     $("month-max").textContent = Math.max(...maxTemps) + "°C";
     $("month-min").textContent = Math.min(...minTemps) + "°C";
-    $("month-rain").textContent = lluvia.toFixed(1) + " mm";
-    $("month-humidity").textContent = humedad + " %";
+    $("month-rain").textContent = lluvia.toFixed(1) + " mm (total) / " + lluviamedia.toFixed(1) + " mm (media diaria)";
+    $("month-humidity").textContent = humedad + " % (media diaria)";
 }
 
 // ====================
