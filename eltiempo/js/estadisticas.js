@@ -69,6 +69,59 @@ function renderLastData(data) {
     $("last-sunset").textContent = last.anochecer;
 } 
 
+/* ==============================================
+   FASES LUNARES
+============================================== */
+function getMoonPhase() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+
+    const c = Math.floor(365.25 * year);
+    const e = Math.floor(30.6 * (month + 1));
+    const jd = c + e + day - 694039.09; 
+    const phase = (jd / 29.53) % 1; 
+    const age = phase * 29.53;
+
+    let phaseName = "", icon = "";
+
+    if (age < 1.84566) { phaseName = "Luna Nueva"; icon = "🌑"; }
+    else if (age < 5.53699) { phaseName = "Creciente Iluminante"; icon = "🌒"; }
+    else if (age < 9.22831) { phaseName = "Cuarto Creciente"; icon = "🌓"; }
+    else if (age < 12.91963) { phaseName = "Gibosa Creciente"; icon = "🌔"; }
+    else if (age < 16.61096) { phaseName = "Luna Llena"; icon = "🌕"; }
+    else if (age < 20.30228) { phaseName = "Gibosa Menguante"; icon = "🌖"; }
+    else if (age < 23.99361) { phaseName = "Cuarto Menguante"; icon = "🌗"; }
+    else if (age < 27.68493) { phaseName = "Creciente Menguante"; icon = "🌘"; }
+    else { phaseName = "Luna Nueva"; icon = "🌑"; }
+
+    document.getElementById("moon-phase").textContent = phaseName;
+    document.getElementById("moon-icon").textContent = icon;
+
+    document.getElementById("stats-location").textContent = `Hoy es ${day} de ${monthNames[month-1]} de ${year}`;
+
+}
+
+function moonPhaseForDate(year, month, day) {
+    const c = Math.floor(365.25 * year);
+    const e = Math.floor(30.6 * (month + 1));
+    const jd = c + e + day - 694039.09;
+    const phase = (jd / 29.53) % 1;
+    const age = phase * 29.53;
+
+    if (age < 1.84566) return "🌑";
+    if (age < 5.53699) return "🌒";
+    if (age < 9.22831) return "🌓";
+    if (age < 12.91963) return "🌔";
+    if (age < 16.61096) return "🌕";
+    if (age < 20.30228) return "🌖";
+    if (age < 23.99361) return "🌗";
+    if (age < 27.68493) return "🌘";
+    return "🌑";
+}
+
+
 // ====================
 // Estadísticas del mes seleccionado
 // ====================

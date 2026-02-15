@@ -95,7 +95,7 @@ html, body {
 
 .section-title {
     width: 100%;
-    background-color: #333333;
+    background-color: var(--bg-nav);
     color: var(--keyword);
     padding: 1rem;
     border: none;
@@ -144,4 +144,20 @@ html, body {
 footer {
     border-top: 1px solid var(--border-editor);
     padding: 1.5rem 0;
+}
+
+/* --- Ajuste para dispositivos pequeños --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        gap: 1.2rem;
+    }
 }

@@ -18,6 +18,9 @@ const fechaNacimientoGemelos = "2004-11-24";
 const edadGemelos = calcularEdad(fechaNacimientoGemelos);
 document.getElementById("edad-gemelos").textContent = edadGemelos;
 
+const fechaPandemia = "2020-03-11";
+const edadPandemia = calcularEdad(fechaPandemia);
+document.getElementById("edad-pandemia").textContent = edadPandemia;
 
 // añade el año actual al pie de página
 document.getElementById("anio").textContent = new Date().getFullYear();
