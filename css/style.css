@@ -1,13 +1,13 @@
 /* Variables de tus colores */
 :root {
-    --primary-blue: #0054a4;
+/*    --primary-blue: #0054a4;
     --medium-blue: #286291;
     --dark-blue: #1a3668;
     --light-blue: #a4d7f4;
     --accent-orange: #ff9900;
     --light-gold: #ffc24a;
-    --bg-dark: #0f172a; /* Fondo muy oscuro para contraste */
-    --gray: #acb3bf;
+    --bg-dark: #0f172a; 
+    */
 
     /* Paleta de el tiempo */
     --color-primario: #F5F5F5;   
@@ -19,12 +19,13 @@
     --sombra: rgba(47, 58, 86, 0.15);
     --color-tarjeta: #1A1A1A;
     --color-acento: #5FAEDB;
+     --gray: #acb3bf;
     --color-borde: rgba(95, 174, 219, 0.3);
     --color-cabecera: rgba(0,0,0,0.80);
 }
 
 body {
-    font-family: Roboto, 'Inter', sans-serif;
+    font-family: Consolas, 'Roboto', 'Inter', sans-serif;
     background-color: var(--color-fondo);
     color: var(--color-texto);
 }
