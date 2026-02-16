@@ -1,7 +1,3 @@
-// API URL absoluta
-const API_URL = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather.php?ciudad=madrid";
-const API_URL_TODAY = "https://aplicacionesdevanguardia.es/eltiempo/servidor/weather-hoy.php?ciudad=madrid";
-
 // ====================
 // Helper
 // ====================
@@ -11,44 +7,50 @@ const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio",
                     "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
 let selectedMonth = new Date().getMonth(); // mes actual
+let ciudadActual = "Madrid"; // ciudad por defecto
 
+const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
+
+// ====================
+// Construir URL de API según filtros
+// ====================
+function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
+    const params = new URLSearchParams();
+    params.append("ciudad", ciudad);
+    if (fecha) params.append("fecha", fecha);
+    if (desde) params.append("desde", desde);
+    if (hasta) params.append("hasta", hasta);
+
+    return `${BASE_API}?${params.toString()}`;
+}
+
+// ====================
+// Actualizar nombre de mes
+// ====================
 function updateMonthHeader() {
     $("mes-nombre").textContent = monthNames[selectedMonth];
 }
 
 // ====================
-// Cargar datos del JSON
+// Cargar datos desde la API
 // ====================
-async function loadStats() {
+async function loadStats(options = {}) {
     try {
-        const response = await fetch(API_URL);
+        const url = buildApiUrl({
+            ciudad: ciudadActual,
+            ...options
+        });
+
+        const response = await fetch(url);
         if (!response.ok) throw new Error("Error cargando datos: " + response.status);
 
         const data = await response.json();
-
         if (!data || !data.length) throw new Error("Datos vacíos");
 
         renderLastData(data);
         renderMonthStats(data);
         renderTrend(data);
-    } catch (err) {
-        console.error(err);
-        $("stats-location").textContent = "Error cargando datos";
-    }
-}
 
-async function loadStatsToday() {
-    try {
-        const response = await fetch(API_URL);
-        if (!response.ok) throw new Error("Error cargando datos: " + response.status);
-
-        const data = await response.json();
-
-        if (!data || !data.length) throw new Error("Datos vacíos");
-
-        renderLastData(data);
-        renderMonthStats(data);
-        renderTrend(data);
     } catch (err) {
         console.error(err);
         $("stats-location").textContent = "Error cargando datos";
@@ -67,11 +69,13 @@ function renderLastData(data) {
     $("last-wind").textContent = last.viento_velocidad + " km/h";
     $("last-sunrise").textContent = last.amanecer;
     $("last-sunset").textContent = last.anochecer;
-} 
 
-/* ==============================================
-   FASES LUNARES
-============================================== */
+    $("stats-location").textContent = `${ciudadActual} - Estadísticas`;
+}
+
+// ====================
+// FASES LUNARES
+// ====================
 function getMoonPhase() {
     const now = new Date();
     const year = now.getFullYear();
@@ -96,31 +100,12 @@ function getMoonPhase() {
     else if (age < 27.68493) { phaseName = "Creciente Menguante"; icon = "🌘"; }
     else { phaseName = "Luna Nueva"; icon = "🌑"; }
 
-    document.getElementById("moon-phase").textContent = phaseName;
-    document.getElementById("moon-icon").textContent = icon;
+    $("moon-phase").textContent = phaseName;
+    $("moon-icon").textContent = icon;
 
-    document.getElementById("stats-location").textContent = `Hoy es ${day} de ${monthNames[month-1]} de ${year}`;
-
+    const today = new Date();
+    $("stats-location").textContent += ` | Hoy ${today.getDate()} de ${monthNames[today.getMonth()]} de ${today.getFullYear()}`;
 }
-
-function moonPhaseForDate(year, month, day) {
-    const c = Math.floor(365.25 * year);
-    const e = Math.floor(30.6 * (month + 1));
-    const jd = c + e + day - 694039.09;
-    const phase = (jd / 29.53) % 1;
-    const age = phase * 29.53;
-
-    if (age < 1.84566) return "🌑";
-    if (age < 5.53699) return "🌒";
-    if (age < 9.22831) return "🌓";
-    if (age < 12.91963) return "🌔";
-    if (age < 16.61096) return "🌕";
-    if (age < 20.30228) return "🌖";
-    if (age < 23.99361) return "🌗";
-    if (age < 27.68493) return "🌘";
-    return "🌑";
-}
-
 
 // ====================
 // Estadísticas del mes seleccionado
@@ -164,16 +149,13 @@ function renderTrend(data) {
 
     const container = $("trend-container");
 
-    // Si no hay datos para el mes, mostrar mensaje
     if (Object.keys(byYear).length === 0) {
         container.innerHTML = "<p>No hay datos históricos para este mes.</p>";
         return;
     }
 
-    // Construir tabla completa en una variable
     let html = "<table class=\"trend-table\"><thead><tr><th>Año</th><th>Máx</th><th>Mín</th><th>Lluvia</th></tr></thead><tbody>";
 
-    // Ordenar años de más reciente a más antiguo
     Object.keys(byYear).sort((a, b) => b - a).forEach(year => {
         const maxAvg = (byYear[year].max.reduce((a,b)=>a+b,0)/byYear[year].max.length).toFixed(1);
         const minAvg = (byYear[year].min.reduce((a,b)=>a+b,0)/byYear[year].min.length).toFixed(1);
@@ -190,33 +172,49 @@ function renderTrend(data) {
     });
 
     html += "</tbody></table>";
-
-    // Insertar tabla en el contenedor
     container.innerHTML = html;
 }
 
+// ====================
+// Cargar mes actual según selectedMonth
+// ====================
+function loadCurrentMonth() {
+    const year = new Date().getFullYear();
+    const month = selectedMonth + 1;
+
+    const firstDay = `${year}-${String(month).padStart(2,"0")}-01`;
+    const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
+
+    loadStats({ desde: firstDay, hasta: lastDay });
+}
 
 // ====================
-// Botones de mes
+// Inicialización
 // ====================
 document.addEventListener("DOMContentLoaded", () => {
     updateMonthHeader();
-    loadStats();
-    loadStatsToday();
+    getMoonPhase();
+    loadCurrentMonth();
 
     $("prev-month").addEventListener("click", () => {
         selectedMonth = (selectedMonth + 11) % 12;
         updateMonthHeader();
-        loadStats();
-        loadStatsToday();
+        loadCurrentMonth();
     });
 
     $("next-month").addEventListener("click", () => {
         selectedMonth = (selectedMonth + 1) % 12;
         updateMonthHeader();
-        loadStats();
-        loadStatsToday();
+        loadCurrentMonth();
     });
 
     $("year").textContent = new Date().getFullYear();
+
+    // ====================
+    // Selector de ciudad
+    // ====================
+    $("city-select").addEventListener("change", (e) => {
+        ciudadActual = e.target.value;
+        loadCurrentMonth();
+    });
 });

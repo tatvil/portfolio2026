@@ -14,11 +14,18 @@ define('DB_NAME', 'clima');
 // --- 2. Input Validation ---
 // Assuming 'ciudad' comes from a GET request.
 $ciudad = $_GET['ciudad'] ?? ''; // Use null coalescing operator for cleaner default
+$fecha = $_GET['fecha'] ?? ''; // Optional: filter by date
 
 if (empty($ciudad)) {
     http_response_code(400); // Bad Request
     echo json_encode(["error" => "Parámetro 'ciudad' es requerido."]);
     exit(); // Stop script execution
+}
+
+if (!empty($fecha) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $fecha)) {
+    http_response_code(400); // Bad Request
+    echo json_encode(["error" => "Parámetro 'fecha' debe tener el formato YYYY-MM-DD."]);
+    exit();
 }
 
 // Optional: Further sanitize/validate the city name if needed (e.g., alphanumeric only)
@@ -53,6 +60,7 @@ $stmt = $conn->prepare("
     FROM weather
     WHERE DATE(fecha) >= '2024-10-01'
         AND ciudad LIKE CONCAT('%', ?, '%')
+        AND DATE(fecha) LIKE CONCAT('%', ?, '%')
     GROUP BY DATE(fecha)
     ORDER BY DATE(fecha);
 ");
@@ -64,7 +72,8 @@ if (!$stmt) {
     exit();
 }
 
-$stmt->bind_param("s", $ciudad);
+$stmt->bind_param("ss", $ciudad, $fecha);
+
 $stmt->execute();
 $result = $stmt->get_result();
 
