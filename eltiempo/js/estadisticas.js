@@ -70,7 +70,7 @@ function renderLastData(data) {
     $("last-sunrise").textContent = last.amanecer;
     $("last-sunset").textContent = last.anochecer;
 
-    $("stats-location").textContent = `${ciudadActual} - Estadísticas`;
+    $("stats-location").textContent = `Estadisticas de ${ciudadActual}`;
 }
 
 // ====================
