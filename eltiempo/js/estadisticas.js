@@ -21,7 +21,11 @@ function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
     if (desde) params.append("desde", desde);
     if (hasta) params.append("hasta", hasta);
 
+    console.log("24 - Construyendo URL con parámetros:", { ciudad, fecha, desde, hasta });
+    console.log("URL API:", `${BASE_API}?${params.toString()}`);
+
     return `${BASE_API}?${params.toString()}`;
+    
 }
 
 // ====================
@@ -135,6 +139,8 @@ function renderMonthStats(data) {
 function renderTrend(data) {
     const byYear = {};
 
+    console.log("Datos recibidos para tendencia histórica:", data);
+
     // Agrupar datos por año para el mes seleccionado
     data.forEach(d => {
         const date = new Date(d.dia);
@@ -148,6 +154,8 @@ function renderTrend(data) {
     });
 
     const container = $("trend-container");
+
+    console.log("Datos agrupados por año para tendencia:", byYear);
 
     if (Object.keys(byYear).length === 0) {
         container.innerHTML = "<p>No hay datos históricos para este mes.</p>";
@@ -179,12 +187,34 @@ function renderTrend(data) {
 // Cargar mes actual según selectedMonth
 // ====================
 function loadCurrentMonth() {
-    const year = new Date().getFullYear();
+    const ahora = new Date();
+    const currentYear = ahora.getFullYear();
+    const currentMonth = ahora.getMonth();
+    
+    // 1. Calculamos el año objetivo (si selectedMonth es mayor al actual, asumimos año anterior o lógica de negocio)
+    // Para simplificar tu oposición, usaremos el año actual.
+    const year = currentYear;
     const month = selectedMonth + 1;
 
-    const firstDay = `${year}-${String(month).padStart(2,"0")}-01`;
-    const lastDay = new Date(year, month, 0).toISOString().split("T")[0];
+    // 2. Primer día del mes
+    const firstDay = `${year}-${String(month).padStart(2, "0")}-01`;
 
+    // 3. Cálculo del último día (evitando el desfase de toISOString)
+    let ultimoDiaObj = new Date(year, month, 0);
+    
+    // LÓGICA DE SEGURIDAD: Si es el mes/año actual, el último día es HOY, no el fin de mes.
+    if (selectedMonth === currentMonth && year === currentYear) {
+        ultimoDiaObj = ahora;
+    }
+
+    // Formateo manual para evitar el error de -1 día por zona horaria (UTC)
+    const y = ultimoDiaObj.getFullYear();
+    const m = String(ultimoDiaObj.getMonth() + 1).padStart(2, "0");
+    const d = String(ultimoDiaObj.getDate()).padStart(2, "0");
+    const lastDay = `${y}-${m}-${d}`;
+
+    console.log("Cargando datos para:", monthNames[selectedMonth], `(${firstDay} a ${lastDay})`);
+    
     loadStats({ desde: firstDay, hasta: lastDay });
 }
 

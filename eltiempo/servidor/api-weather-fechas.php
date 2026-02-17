@@ -114,6 +114,8 @@ $sql .= "
     ORDER BY DATE(fecha);
 ";
 
+console_log("SQL: $sql");
+console_log("Params: " . implode(", ", $params));
 // ============================
 // 6. PREPARAR Y EJECUTAR
 // ============================
