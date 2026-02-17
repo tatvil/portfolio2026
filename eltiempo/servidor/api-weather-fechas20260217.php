@@ -114,6 +114,8 @@ $sql .= "
     ORDER BY DATE(fecha);
 ";
 echo $sql; // Para depuración: muestra la consulta generada
+echo "\nParámetros: " . implode(", ", $params) . "\n"; // Para depuración: muestra los parámetros
+
 // ============================
 // 6. PREPARAR Y EJECUTAR
 // ============================
