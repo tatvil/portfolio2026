@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tatiana Villa - Sobre mí</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/sobremi.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-black text-light">
+
+<!-- Header -->
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm border-bottom border-secondary">
+        <div class="container-fluid">
+
+            <!-- Logo -->
+            <a class="navbar-brand font-weight-bold" href="index.html" style="font-family: 'Consolas', monospace;">
+                <span class="text-primary">{</span>Tatiana Villa <span class="text-primary">}</span>
+            </a>
+
+             <!-- Botón móvil -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"
+                    aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú -->
+            <div class="collapse navbar-collapse justify-content-end" id="menuNav">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="proyectos.html">Proyectos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="habilidades.html">Habilidades</a>
+                    </li>
+<!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="formacion.html">Formación</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="experiencia.html">Experiencia</a>
+                    </li>
+                -->
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+<!-- Main Content -->
+
+<main class="container main-content py-5">
+
+    <p class="text-success h5 font-monospace">
+        /** <br>
+        * Hola, soy Tatiana Villa Ema <!--(<span id="edad"></span> años)--> <br>
+        * Full Stack Developer<br>
+        */
+    </p>
+
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <h3 class="text-primary">&lt;sobre-mi&gt;</h3>
+            <p>Mi camino en tecnología empezó muy pronto. Desde joven me formé en informática y comencé mi carrera profesional en entornos de alto nivel, trabajando como programadora y administradora de sistemas Unix/Linux para empresas como Hewlett-Packard, Telefónica, Caja Duero, Oracle o Realia. Durante más de una década gestioné infraestructuras críticas, impartí formación técnica y resolví problemas complejos en sistemas Linux y HP-UX, siempre con un enfoque práctico, metódico y orientado a la estabilidad.</p>
+            <p>Cuando nacieron mis hijos decidí priorizar mi familia y hacer una pausa en mi carrera profesional. Fue una etapa importante y necesaria, pero nunca dejé de sentir que la tecnología seguía siendo mi lugar. Ahora mismo mi hija mayor tiene <span id="edad-andrea"></span> años y mis hijos mellizos tienen <span id="edad-gemelos"></span> años.</p>
+            <p>Poco antes de la pandemia (hace ya <span id="edad-pandemia"></span> años) intenté reincorporarme al sector, pero por ser persona de riesgo tuve que aislarme. Ese parón inesperado se convirtió en una oportunidad: retomé mi formación desde cero, actualicé mis conocimientos y me abrí a nuevas áreas. Estudié redes, desarrollo web, Java, tecnologías multiplataforma, robótica, diseño 3D y, finalmente, completé el título de Desarrollo de Aplicaciones Multiplataforma (DAM).</p>
+            <p>Desde entonces he seguido creciendo como desarrolladora Full Stack, reforzando mi base en Java, PHP, JavaScript, HTML y CSS, y ampliando mi camino hacia el ecosistema .NET, DevOps y Cloud.</p>
+            <p>Hoy combino mi experiencia en sistemas con mi formación en desarrollo para crear soluciones completas, estables y bien pensadas. Mi trayectoria no es lineal, y precisamente por eso es valiosa: sé cómo funcionan las cosas por dentro, sé cómo construirlas por fuera y sé adaptarme, aprender y reinventarme cuando la vida lo exige.</p>
+            
+            <h3 class="text-primary">&lt;/sobre-mi&gt;</h3>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary p-3 shadow">
+                <h5 class="text-info">// Conocimientos</h5>
+                
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2 card-text">Java, Spring, Hibernate</li>
+                    <li class="mb-2 card-text">PHP, JavaScript, HTML, CSS, Bootstrap</li> 
+                    <li class="mb-2 card-text">C#, .NET, SQL, Docker</li>
+                    <li class="mb-2 card-text">Linux, HP-UX, DevOps, VMware</li>
+                    <li class="mb-2 card-text">Cloud (Azure)</li>
+                    <li class="mb-2 card-text">Diseño 3D, robótica con Arduino</li>
+                    <li class="mb-2 card-text">Desarrollo de videojuegos con Unity</li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark border-secondary p-3 shadow">
+                <h5 class="text-info">// Habilidades</h5>
+                
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2 card-text">Trabajo en equipo, resolución de conflictos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+ <footer class="py-5 text-center">
+        <div class="container">
+            <p class="mb-0">&copy; <span id="anio"></span> - Tatiana Villa</p>
+        </div>
+</footer>
+
+<!--
+<script>
+    document.getElementById("anio").textContent = new Date().getFullYear();
+</script>
+-->
+<script src="js/codigo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

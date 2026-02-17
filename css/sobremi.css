@@ -1,0 +1,163 @@
+/* 1. CONFIGURACIÓN DEL TEMA OSCURO (VS CODE) */
+:root {
+    --bg-vs: #1e1e1e; /* Fondo principal */
+    --bg-nav: #252526; /* Fondo de barra de navegación */
+    --bg-card: #2d2d2d; /* Fondo de tarjetas/secciones */
+    --keyword: #569cd6; /* Azul C# (clases/palabras clave) */
+    --string: #ce9178; /* Naranja/Salmón (textos) */
+    --comment: #6a9955; /* Verde (comentarios) */
+    --var-name: #9cdcfe; /* Azul claro (variables) */
+    --text: #d4d4d4; /* Gris claro (texto normal) */
+    --border-editor: #3e3e42; /* Color de bordes y líneas */
+}
+
+/* Forzar fondo oscuro en toda la web */
+html, body {
+    background-color: var(--bg-vs) !important;
+    color: var(--text);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* 2. AJUSTES DE BOOTSTRAP PARA MODO OSCURO */
+.navbar, .bg-dark, .footer {
+    background-color: var(--bg-nav) !important;
+}
+
+.container {
+    background-color: transparent !important;
+}
+
+/* 3. CABECERA Y FOTO */
+.header-presentacion {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.perfil-foto {
+    width: 140px;
+    height: 140px;
+    border-radius: 20%; /* Estilo 'squircle' moderno */
+    object-fit: cover;
+    border: 2px solid var(--border-editor);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* 4. ESTILOS DE CÓDIGO (COLORES) */
+.text-primary {
+    color: var(--keyword) !important;
+}
+
+.text-info {
+    color: var(--var-name) !important;
+}
+
+.text-warning {
+    color: var(--string) !important;
+}
+
+.text-success {
+    color: var(--comment) !important;
+}
+
+.text-secondary {
+    color: #808080 !important;
+}
+/* Para las llaves { } */
+
+/* 5. SECCIÓN DE CONTACTO */
+.contacto-code-style a {
+    transition: all 0.2s;
+}
+
+.contacto-code-style a:hover {
+    color: var(--keyword) !important;
+    text-decoration: underline !important;
+}
+
+/* 6. LÍNEA LATERAL DEL EDITOR (RenderBody) */
+.border-start.border-primary {
+    border-color: var(--keyword) !important;
+    border-width: 4px !important;
+}
+
+/* 7. ACORDEÓN / SECCIONES DE HABILIDADES */
+.section-cv {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-editor);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.section-title {
+    width: 100%;
+    background-color: var(--bg-nav);
+    color: var(--keyword);
+    padding: 1rem;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.section-title:hover {
+    background-color: #3c3c3c;
+}
+
+.section-content {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    background-color: var(--bg-vs);
+}
+
+/* Clase que añade el JS para abrir el acordeón */
+.section-content.is-visible {
+    padding: 1.5rem;
+    max-height: 1000px;
+}
+
+/* 8. BARRAS DE PROGRESO (Skills) */
+.progress-bar-container {
+    height: 10px;
+    background-color: #3e3e42;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--keyword);
+    box-shadow: 0 0 10px rgba(86, 156, 214, 0.3);
+    transition: width 1s ease-in-out;
+}
+
+/* 9. FOOTER */
+footer {
+    border-top: 1px solid var(--border-editor);
+    padding: 1.5rem 0;
+}
+
+/* --- Ajuste para dispositivos pequeños --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        gap: 1.2rem;
+    }
+}

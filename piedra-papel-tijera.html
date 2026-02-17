@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra · Papel · Tijera · Lagarto · Spock</title>
+
+    <script src="js/piedra.js" defer></script>
+    <link rel="stylesheet" href="css/piedra-papel-tijera.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="cabecera" id="titulo">
+        <h1>Piedra · Papel · Tijera · Lagarto · Spock</h1>
+    </header>
+
+    <button id="toggle-tema" class="boton">Cambiar tema</button>
+
+    <section class="nombre">
+        <label for="nombre" id="labelNombre">Nombre del jugador:</label>
+        <input class="campo" type="text" id="nombre" autocomplete="off">
+        <span class="error" id="errorNombre" aria-live="polite"></span>
+        <button class="boton" id="botonNombre">OK</button>
+    </section>
+
+    <main class="cuerpo">
+
+        <!-- Jugador -->
+        <section class="columna" id="persona">
+            <header class="cabecera-jugador">
+                <p id="etiquetaJugador">Puntuación Jugador:</p>
+                <p id="puntos-persona">0</p>
+            </header>
+
+            <div class="opciones">
+                <img src="img/piedra-papel-tijera/piedra.png"  id="piedra"  class="btn-img" alt="Piedra">
+                <img src="img/piedra-papel-tijera/papel.png"   id="papel"   class="btn-img" alt="Papel">
+                <img src="img/piedra-papel-tijera/tijera.png"  id="tijera"  class="btn-img" alt="Tijera">
+                <img src="img/piedra-papel-tijera/lagarto.png" id="lagarto" class="btn-img" alt="Lagarto">
+                <img src="img/piedra-papel-tijera/spock.png"   id="spock"   class="btn-img" alt="Spock">
+            </div>
+
+            <p class="grande" id="eleccionjugador">¿Qué eliges?</p>
+        </section>
+
+        <!-- Centro -->
+        <section class="columna" id="imagencentro">
+            <p class="grande" id="resultado">Resultado</p>
+            <img src="img/piedra-papel-tijera/esquemaminimalista.png" class="central-img" alt="Esquema del juego">
+        </section>
+
+        <!-- Ordenador -->
+        <section class="columna" id="ordenador">
+            <header class="cabecera-jugador">
+                <p>Puntuación Ordenador:</p>
+                <p id="puntos-ordenador">0</p>
+            </header>
+
+            <div class="opciones">
+                <img src="img/piedra-papel-tijera/piedra.png"  class="btn-img" alt="Piedra">
+                <img src="img/piedra-papel-tijera/papel.png"   class="btn-img" alt="Papel">
+                <img src="img/piedra-papel-tijera/tijera.png"  class="btn-img" alt="Tijera">
+                <img src="img/piedra-papel-tijera/lagarto.png" class="btn-img" alt="Lagarto">
+                <img src="img/piedra-papel-tijera/spock.png"   class="btn-img" alt="Spock">
+            </div>
+
+            <p class="grande" id="eleccionordenador">Elección del ordenador</p>
+        </section>
+
+    </main>
+
+     <footer class="py-5 text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 - Tatiana Villa</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

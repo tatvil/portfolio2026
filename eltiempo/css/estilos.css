@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600&display=swap');
+
+:root {
+    /* Paleta refinada */
+    --color-primario: #F5F5F5;   /* Azul noche espiritual */
+    --color-hover: #1E3A5F;      /* Azul profundo para hover */
+    --color-secundario: #A1A1A1; /* Azul muy suave */
+    --color-fondo: #0D0D0D;      /* Fondo principal */
+    --color-texto: #E5E5E5;      /* Gris claro para texto */
+    --blanco-puro: #FFFFFF;
+    --sombra: rgba(47, 58, 86, 0.15);
+    --color-tarjeta: #1A1A1A;
+    --color-acento: #5FAEDB;
+    --color-borde: rgba(95, 174, 219, 0.3);
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #0D0D0D 0%, #111827 100%);
+    color: var(--color-texto);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 1px;
+    color: var(--color-acento);
+    margin: 0;
+}
+
+#city-select {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: rgba(20, 20, 20, 0.8);
+    color: var(--color-primario);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+nav a {
+    color: var(--color-primario);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--color-hover);
+    transform: translateY(-2px);
+}
+
+.container {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem 0;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.tarjeta {
+    background: rgba(20, 20, 20, 0.75);
+    backdrop-filter: blur(4px);
+    border-radius: 14px;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0 10px 20px rgba(0,0,0,.35);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tarjeta:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0,0,0,.5);
+}
+
+.tarjeta h2 {
+    margin: 0;
+    padding: 12px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    text-align: center;
+    color: var(--color-acento);
+    background: rgba(13, 13, 13, 0.8);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+/* --- Párrafos generales de todas las tarjetas --- */
+.tarjeta p {
+    text-align: center;
+    color: var(--color-texto);
+    font-size: 1rem;
+    margin: 2px 0;       /* menos espacio entre líneas */
+    padding: 0;          /* eliminar padding extra */
+}
+
+/* --- Ajuste para dispositivos pequeños --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        gap: 1.2rem;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--color-secundario);
+    margin-top: 3rem;
+    background: transparent;
+}
+
+/* --- Tarjeta Amanecer/Anochecer: más compacta --- */
+
+
+#moon-mini-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.moon-day {
+    padding: 4px;
+    border-radius: 6px;
+    background: var(--color-fondo);
+    font-size: 0.9rem;
+}
+
+.moon-today {
+    background: var(--color-hover);
+    font-weight: bold;
+}
+
+.moon-icon {
+    font-size: 1.4rem;
+    display: block;
+}
+
+#moon-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 10px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-acento);
+    font-size: 0.85rem;
+}
+
+#moon-weekdays span {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+
+/* ---------- BULLET JOURNAL SUMMARY ---------- */
+
+#bullet-summary {
+    cursor: default;
+}
+
+#bullet-summary .bj-resumen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 14px;
+}
+
+#bullet-summary .bj-item {
+    background: rgba(13,13,13,0.8);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: inset 0 0 12px rgba(0,0,0,.4);
+}
+
+#bullet-summary .bj-item span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-secundario);
+    letter-spacing: .5px;
+}
+
+#bullet-summary .bj-item strong {
+    font-size: 1.4rem;
+    font-family: 'EB Garamond', serif;
+    color: var(--color-acento);
+}
+
+/* Botón */
+
+#bullet-summary .btn , #weather-card .btn {
+    display: block;
+    width: 75%;
+    margin: 12px auto 14px;
+    padding: 10px;
+    background: linear-gradient(135deg, #1E3A5F, #111827);
+    color: var(--blanco-puro);
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-borde);
+    transition: all .3s ease;
+}
+
+#bullet-summary .btn:hover, #weather-card .btn:hover {
+    background: linear-gradient(135deg, #2b4f80, #1E293B);
+    transform: translateY(-2px);
+}
+
+
+/* ICONOS */
+
+.termometro {
+  width: 48px;
+}
+
+.termometro.neutro {
+    fill: var(--color-primario);
+}
+
+.termometro.frio {
+    fill: var(--color-acento);
+}
+
+.termometro.calor {
+    fill: #f44336;
+}
+
+.termometro.templado { fill: #4caf50; }
+
+#mes-navegacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.mes-btn {
+    background: rgba(20, 20, 20, 0.8);
+    color: var(--color-acento);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'EB Garamond', serif;
+}
+
+.mes-btn:hover {
+    background: rgba(31, 53, 88, 0.9);
+    transform: translateY(-2px);
+}
+
+#mes-nombre {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--color-acento);
+    min-width: 80px;
+    text-align: center;
+}
+
+/* =======================
+   Tabla de tendencia
+   ======================= */
+.trend-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Cabecera */
+.trend-table thead {
+    color: var(--color-acento);
+    background-color: rgba(13, 13, 13, 0.85);
+}
+
+.trend-table thead th {
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Filas del cuerpo */
+.trend-table tbody tr {
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.trend-table tbody tr:nth-child(even) {
+    background-color: rgba(20, 20, 20, 0.8);
+}
+
+.trend-table tbody td {
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Colores según tipo de dato */
+.trend-table tbody td:nth-child(2) { /* Máx */
+    color: #e74c3c; /* rojo */
+    font-weight: 600;
+}
+
+.trend-table tbody td:nth-child(3) { /* Mín */
+    color: #3498db; /* azul */
+    font-weight: 600;
+}
+
+.trend-table tbody td:nth-child(4) { /* Lluvia */
+    color: #27ae60; /* verde */
+    font-weight: 600;
+}
+
+/* Hover para destacar fila */
+.trend-table tbody tr:hover {
+    background-color: rgba(31, 53, 88, 0.9);
+}
+
+/* Adaptable a móviles */
+@media (max-width: 600px) {
+    .trend-table thead {
+        display: none;
+    }
+    .trend-table tbody td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    .trend-table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: 600;
+        text-align: left;
+    }
+}
