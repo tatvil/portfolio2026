@@ -113,7 +113,7 @@ $sql .= "
     GROUP BY DATE(fecha)
     ORDER BY DATE(fecha);
 ";
-
+echo $sql; // Para depuración: muestra la consulta generada
 // ============================
 // 6. PREPARAR Y EJECUTAR
 // ============================
@@ -140,7 +140,7 @@ while ($row = $result->fetch_assoc()) {
 // 7. RESPUESTA
 // ============================
 http_response_code(200);
-echo json_encode($datos);
+//echo json_encode($datos);
 
 // ============================
 // 8. CIERRE
