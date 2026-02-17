@@ -3,7 +3,7 @@
 // 1. HEADERS
 // ============================
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=utf-8");
+header("Content-Type: text/plain; charset=utf-8");
 
 // ============================
 // 2. CONFIGURACIÓN BD
@@ -36,19 +36,19 @@ function fechaValida($fecha) {
 
 if (!empty($fecha) && !fechaValida($fecha)) {
     http_response_code(400);
-    echo json_encode(["error" => "El parámetro 'fecha' debe tener formato YYYY-MM-DD."]);
+    echo ["error" => "El parámetro 'fecha' debe tener formato YYYY-MM-DD."];
     exit();
 }
 
 if (!empty($desde) && !fechaValida($desde)) {
     http_response_code(400);
-    echo json_encode(["error" => "El parámetro 'desde' debe tener formato YYYY-MM-DD."]);
+    echo ["error" => "El parámetro 'desde' debe tener formato YYYY-MM-DD."];
     exit();
 }
 
 if (!empty($hasta) && !fechaValida($hasta)) {
     http_response_code(400);
-    echo json_encode(["error" => "El parámetro 'hasta' debe tener formato YYYY-MM-DD."]);
+    echo ["error" => "El parámetro 'hasta' debe tener formato YYYY-MM-DD."];
     exit();
 }
 
@@ -59,7 +59,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($conn->connect_error) {
     http_response_code(500);
-    echo json_encode(["error" => "Error de conexión a la base de datos."]);
+    echo ["error" => "Error de conexión a la base de datos."];
     exit();
 }
 
@@ -121,7 +121,7 @@ $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
     http_response_code(500);
-    echo json_encode(["error" => "Error al preparar la consulta."]);
+//    echo json_encode(["error" => "Error al preparar la consulta."]);
     $conn->close();
     exit();
 }
@@ -133,13 +133,14 @@ $result = $stmt->get_result();
 $datos = [];
 
 while ($row = $result->fetch_assoc()) {
-    $datos[] = $row;
+//    $datos[] = $row;
+    echo $row['dia'] . " - " . $row['temp_max'] . "°C / " . $row['temp_min'] . "°C\n";
 }
 
 // ============================
 // 7. RESPUESTA
 // ============================
-http_response_code(200);
+//http_response_code(200);
 //echo json_encode($datos);
 
 // ============================
