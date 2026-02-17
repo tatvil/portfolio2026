@@ -188,32 +188,33 @@ function renderTrend(data) {
 // ====================
 function loadCurrentMonth() {
     const ahora = new Date();
-    const currentYear = ahora.getFullYear();
-    const currentMonth = ahora.getMonth();
-    
-    // 1. Calculamos el año objetivo (si selectedMonth es mayor al actual, asumimos año anterior o lógica de negocio)
-    // Para simplificar tu oposición, usaremos el año actual.
-    const year = currentYear;
-    const month = selectedMonth + 1;
+    const yearActual = ahora.getFullYear();
+    const mesActual = ahora.getMonth();
+    const diaActual = ahora.getDate();
 
-    // 2. Primer día del mes
-    const firstDay = `${year}-${String(month).padStart(2, "0")}-01`;
+    // El mes que queremos consultar
+    const yearBusqueda = yearActual; 
+    const monthBusqueda = selectedMonth + 1;
 
-    // 3. Cálculo del último día (evitando el desfase de toISOString)
-    let ultimoDiaObj = new Date(year, month, 0);
+    // 1. Primer día del mes (Siempre el 01)
+    const firstDay = `${yearBusqueda}-${String(monthBusqueda).padStart(2, "0")}-01`;
+
+    // 2. Calculamos el último día teórico del mes
+    let ultimoDiaObj = new Date(yearBusqueda, monthBusqueda, 0);
     
-    // LÓGICA DE SEGURIDAD: Si es el mes/año actual, el último día es HOY, no el fin de mes.
-    if (selectedMonth === currentMonth && year === currentYear) {
+    // 3. VALIDACIÓN CRUCIAL: Si el mes seleccionado es el actual, 
+    // limitamos la búsqueda hasta HOY para evitar el Error 500 del servidor.
+    if (selectedMonth === mesActual && yearBusqueda === yearActual) {
         ultimoDiaObj = ahora;
     }
 
-    // Formateo manual para evitar el error de -1 día por zona horaria (UTC)
+    // 4. Formateo manual YYYY-MM-DD (Evita toISOString y sus desfases UTC)
     const y = ultimoDiaObj.getFullYear();
     const m = String(ultimoDiaObj.getMonth() + 1).padStart(2, "0");
     const d = String(ultimoDiaObj.getDate()).padStart(2, "0");
     const lastDay = `${y}-${m}-${d}`;
 
-    console.log("Cargando datos para:", monthNames[selectedMonth], `(${firstDay} a ${lastDay})`);
+    console.log(`Petición: ${firstDay} hasta ${lastDay}`);
     
     loadStats({ desde: firstDay, hasta: lastDay });
 }
