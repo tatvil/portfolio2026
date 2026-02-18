@@ -46,6 +46,7 @@ html, body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+<<<<<<< HEAD
 .empresa {
     color: var(--keyword);
 }
@@ -59,6 +60,8 @@ html, body {
 }
 
 
+=======
+>>>>>>> 1409b91efed570aae51e1eaf845151685bb4f177
 /* 4. ESTILOS DE CÓDIGO (COLORES) */
 .text-primary {
     color: var(--keyword) !important;
