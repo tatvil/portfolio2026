@@ -46,6 +46,19 @@ html, body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+.empresa {
+    color: var(--keyword);
+}
+
+.habilidad {
+    color: var(--string);
+}
+
+.curso {
+    color: var(--comment);
+}
+
+
 /* 4. ESTILOS DE CÓDIGO (COLORES) */
 .text-primary {
     color: var(--keyword) !important;
