@@ -11,26 +11,6 @@ let ciudadActual = "Madrid"; // ciudad por defecto
 
 //  const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
 const BASE_API = "https://tatvil.es/apis/api/weather/filter";
-//const BASE_API = "http://tatvil.es/apis/api/weather/all"; 
-
-// ====================
-// Construir URL de API según filtros
-// ====================
-/* ANTES:
-function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
-    const params = new URLSearchParams();
-    params.append("ciudad", ciudad);
-    if (fecha) params.append("fecha", fecha);
-    if (desde) params.append("desde", desde);
-    if (hasta) params.append("hasta", hasta);
-
-    console.log("24 - Construyendo URL con parámetros:", { ciudad, fecha, desde, hasta });
-    console.log("URL API:", `${BASE_API}?${params.toString()}`);
-
-    return `${BASE_API}?${params.toString()}`; 
-}
-*/
-// AHORA: Como el nuevo backend Java devuelve TODO en /all, no podemos construir una URL con filtros. Por ahora, apuntamos directamente a /all y haremos el filtrado en el frontend. Esto es temporal hasta que implementemos los filtros en Java.
 
 function buildApiUrl({ ciudad, desde, hasta }) {
     const params = new URLSearchParams();
@@ -132,10 +112,17 @@ function getMoonPhase() {
 // Estadísticas del mes seleccionado
 // ====================
 function renderMonthStats(data) {
-    const monthData = data.filter(d => new Date(d.dia).getMonth() === selectedMonth);
+    // Esta es la clave: filtrar por el mes seleccionado antes de calcular
+    const monthData = data.filter(d => {
+        const fechaDato = new Date(d.dia);
+        return fechaDato.getMonth() === selectedMonth;
+    });
 
-    if (!monthData.length) return;
-
+    if (!monthData.length) {
+        // Si no hay datos, ponemos a cero para que no salgan cosas raras
+        $("month-days").textContent = 0;
+        return;
+    }
     const maxTemps = monthData.map(d => d.temp_max);
     const minTemps = monthData.map(d => d.temp_min);
     const lluvia = monthData.reduce((sum, d) => sum + parseFloat(d.lluvia), 0);
