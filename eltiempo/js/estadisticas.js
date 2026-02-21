@@ -10,8 +10,8 @@ let selectedMonth = new Date().getMonth(); // mes actual
 let ciudadActual = "Madrid"; // ciudad por defecto
 
 //  const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
-// const BASE_API = "http://tatvil.es/apis/api/weather/filter";
-const BASE_API = "http://tatvil.es/apis/api/weather/all"; // Temporalmente apuntamos a /all ya que el backend Java aún no implementa filtros. Filtraremos en el frontend por ahora.
+const BASE_API = "http://tatvil.es/apis/api/weather/filter";
+//const BASE_API = "http://tatvil.es/apis/api/weather/all"; 
 
 // ====================
 // Construir URL de API según filtros
