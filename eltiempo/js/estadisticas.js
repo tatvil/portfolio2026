@@ -10,7 +10,7 @@ let selectedMonth = new Date().getMonth(); // mes actual
 let ciudadActual = "Madrid"; // ciudad por defecto
 
 // Antes: const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
-const BASE_API = "https://tatvil.es/apis/api/weather/all";
+const BASE_API = "https://tatvil.es/apis/api/weather/filter";
 
 // ====================
 // Construir URL de API según filtros
@@ -31,11 +31,16 @@ function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
 */
 // AHORA: Como el nuevo backend Java devuelve TODO en /all, no podemos construir una URL con filtros. Por ahora, apuntamos directamente a /all y haremos el filtrado en el frontend. Esto es temporal hasta que implementemos los filtros en Java.
 
-function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
-    // Por ahora, como tu Java devuelve todo en /all, apuntamos ahí
-    // El filtrado por ciudad lo haremos en el frontend hasta que lo programemos en Java
-    console.log("Cargando datos desde el nuevo Backend Java en tatvil.es");
-    return BASE_API; 
+function buildApiUrl({ ciudad, desde, hasta }) {
+    const params = new URLSearchParams();
+    params.append("ciudad", ciudad);
+    params.append("desde", desde);
+    params.append("hasta", hasta);
+    
+    console.log("Construyendo URL con parámetros:", { ciudad, desde, hasta });
+    console.log("URL API:", `${BASE_API}?${params.toString()}`);
+    
+    return `${BASE_API}?${params.toString()}`;
 }
 
 // ====================
