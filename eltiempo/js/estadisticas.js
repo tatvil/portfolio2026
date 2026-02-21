@@ -10,7 +10,7 @@ let selectedMonth = new Date().getMonth(); // mes actual
 let ciudadActual = "Madrid"; // ciudad por defecto
 
 //  const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
-const BASE_API = "http://tatvil.es/apis/api/weather/filter";
+const BASE_API = "https://tatvil.es/apis/api/weather/filter";
 //const BASE_API = "http://tatvil.es/apis/api/weather/all"; 
 
 // ====================
