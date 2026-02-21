@@ -10,7 +10,7 @@ let selectedMonth = new Date().getMonth(); // mes actual
 let ciudadActual = "Madrid"; // ciudad por defecto
 
 // Antes: const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
-const BASE_API = "https://tatvil.es/apis/api/weather/filter";
+const BASE_API = "http://tatvil.es/apis/api/weather/filter";
 
 // ====================
 // Construir URL de API según filtros
@@ -39,7 +39,7 @@ function buildApiUrl({ ciudad, desde, hasta }) {
     
     console.log("Construyendo URL con parámetros:", { ciudad, desde, hasta });
     console.log("URL API:", `${BASE_API}?${params.toString()}`);
-    
+
     return `${BASE_API}?${params.toString()}`;
 }
 
