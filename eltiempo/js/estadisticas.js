@@ -50,16 +50,17 @@ function updateMonthHeader() {
 // ====================
 async function loadStats(options = {}) {
     try {
-        const url = buildApiUrl({
-            ciudad: ciudadActual,
-            ...options
-        });
+        const url = buildApiUrl({ ciudad: ciudadActual, ...options });
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error cargando datos: " + response.status);
 
-        const data = await response.json();
+        let data = await response.json(); // Cambia 'const' por 'let'
         if (!data || !data.length) throw new Error("Datos vacíos");
+
+        // --- FILTRADO POR CIUDAD (Importante mientras Java no filtre) ---
+        data = data.filter(d => d.ciudad === ciudadActual);
+        // ----------------------------------------------------------------
 
         renderLastData(data);
         renderMonthStats(data);
