@@ -85,6 +85,48 @@ async function cargarPilotos() {
 }
 
 // ===============================
+// EQUIPOS
+// ===============================
+async function cargarEquipos() {
+    try {
+        const response = await fetch('/f1/api/pilotos');
+        const pilotos = await response.json();
+        const tbody = document.querySelector('#equipos-table tbody');
+
+        tbody.innerHTML = ''; // Limpiamos tabla
+
+        // Agrupar pilotos por equipo
+        const equiposMap = {};
+        pilotos.forEach(p => {
+            const eq = p.equipo || 'Sin equipo';
+            if (!equiposMap[eq]) equiposMap[eq] = [];
+            equiposMap[eq].push(p);
+        });
+
+        // Crear filas por equipo
+        Object.keys(equiposMap).forEach(eq => {
+            const pilotosEq = equiposMap[eq];
+            const nacionalidades = [...new Set(pilotosEq.map(p => p.nacionalidad))].join(', ');
+            const codigos = pilotosEq.map(p => p.codigo).join(', ');
+
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${eq}</td>
+                <td>${pilotosEq.length}</td>
+                <td>${nacionalidades}</td>
+                <td>${codigos}</td>
+            `;
+            tbody.appendChild(fila);
+        });
+
+    } catch (error) {
+        console.error('Error cargando equipos:', error);
+        const tbody = document.querySelector('#equipos-table tbody');
+        tbody.innerHTML = `<tr><td colspan="4">No se pudieron cargar los equipos</td></tr>`;
+    }
+}
+
+// ===============================
 // INIT PRINCIPAL
 // ===============================
 async function init() {
@@ -117,9 +159,10 @@ async function init() {
             `Próxima sesión de ${proxima.raceName}`;
     }
 
-    // 6) Cargar pilotos al inicio y cada minuto
-    cargarPilotos();
-    setInterval(cargarPilotos, 60000); // refresco cada 60 segundos
+// Cargar pilotos y equipos al inicio y cada minuto
+cargarPilotos();
+cargarEquipos();
+setInterval(() => { cargarPilotos(); cargarEquipos(); }, 60000);
 }
 
 // Arrancar todo al cargar la página
