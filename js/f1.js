@@ -85,46 +85,32 @@ async function cargarPilotos() {
 }
 
 // ===============================
-// EQUIPOS
+// ESCUDERÍAS
 // ===============================
-async function cargarEquipos() {
+async function cargarEscuderias() {
     try {
-        const response = await fetch('/f1/api/pilotos');
-        const pilotos = await response.json();
-        const tbody = document.querySelector('#equipos-table tbody');
+        const response = await fetch('/f1/api/escuderias');
+        const escuderias = await response.json();
+        const tbody = document.querySelector('#escuderias-table tbody');
 
         tbody.innerHTML = ''; // Limpiamos tabla
 
-        // Agrupar pilotos por equipo
-        const equiposMap = {};
-        pilotos.forEach(p => {
-            const eq = p.equipo || 'Sin equipo';
-            if (!equiposMap[eq]) equiposMap[eq] = [];
-            equiposMap[eq].push(p);
-        });
-
-        // Crear filas por equipo
-        Object.keys(equiposMap).forEach(eq => {
-            const pilotosEq = equiposMap[eq];
-            const nacionalidades = [...new Set(pilotosEq.map(p => p.nacionalidad))].join(', ');
-            const codigos = pilotosEq.map(p => p.codigo).join(', ');
-
+        escuderias.forEach(e => {
             const fila = document.createElement('tr');
             fila.innerHTML = `
-                <td>${eq}</td>
-                <td>${pilotosEq.length}</td>
-                <td>${nacionalidades}</td>
-                <td>${codigos}</td>
+                <td>${e.nombre}</td>
+                <td>${e.pais}</td>
+                <td>${e.motor}</td>
             `;
             tbody.appendChild(fila);
         });
-
     } catch (error) {
-        console.error('Error cargando equipos:', error);
-        const tbody = document.querySelector('#equipos-table tbody');
-        tbody.innerHTML = `<tr><td colspan="4">No se pudieron cargar los equipos</td></tr>`;
+        console.error('Error cargando escuderías:', error);
+        const tbody = document.querySelector('#escuderias-table tbody');
+        tbody.innerHTML = `<tr><td colspan="4">No se pudieron cargar las escuderías</td></tr>`;
     }
 }
+
 
 // ===============================
 // INIT PRINCIPAL
@@ -159,10 +145,10 @@ async function init() {
             `Próxima sesión de ${proxima.raceName}`;
     }
 
-// Cargar pilotos y equipos al inicio y cada minuto
+// Cargar pilotos y escuderías al inicio y cada minuto
 cargarPilotos();
-cargarEquipos();
-setInterval(() => { cargarPilotos(); cargarEquipos(); }, 60000);
+cargarEscuderias();
+setInterval(() => { cargarPilotos(); cargarEscuderias(); }, 60000);
 }
 
 // Arrancar todo al cargar la página
