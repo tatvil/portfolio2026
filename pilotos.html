@@ -41,49 +41,7 @@
 </head>
 <body>
     <h1>Pilotos de F1</h1>
-    <table id="pilotos-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Equipo</th>
-                <th>Nacionalidad</th>
-                <th>Código</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se llenarán los pilotos -->
-        </tbody>
-    </table>
+   
 
-    <script>
-        async function cargarPilotos() {
-            try {
-                const response = await fetch('/f1/api/pilotos');
-                const pilotos = await response.json();
-                const tbody = document.querySelector('#pilotos-table tbody');
-
-                pilotos.forEach(p => {
-                    const fila = document.createElement('tr');
-                    fila.innerHTML = `
-                        <td>${p.numero}</td>
-                        <td>${p.nombre}</td>
-                        <td>${p.apellido}</td>
-                        <td>${p.equipo || '-'}</td>
-                        <td>${p.nacionalidad}</td>
-                        <td>${p.codigo}</td>
-                    `;
-                    tbody.appendChild(fila);
-                });
-            } catch (error) {
-                console.error('Error cargando pilotos:', error);
-                const tbody = document.querySelector('#pilotos-table tbody');
-                tbody.innerHTML = `<tr><td colspan="6">No se pudieron cargar los pilotos</td></tr>`;
-            }
-        }
-
-        cargarPilotos();
-    </script>
 </body>
 </html>

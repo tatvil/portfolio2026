@@ -1,17 +1,21 @@
-
 // ===============================
 // FUNCIONES DE CONSULTA API
-// https://ergast.com/mrd/overview/f1/
 // ===============================
 
+// Obtener calendario completo de la temporada actual
 async function obtenerCalendario() {
-    // Cargar la programación completa de la actual temporada
-    const response = await fetch("https://api.jolpi.ca/ergast/f1/current.json");
-    const data = await response.json();
-    const carreras = data.MRData.RaceTable.Races;
-    return carreras;
+    try {
+        const response = await fetch("https://api.jolpi.ca/ergast/f1/current.json");
+        const data = await response.json();
+        const carreras = data.MRData.RaceTable.Races;
+        return carreras;
+    } catch (error) {
+        console.error("Error al obtener calendario:", error);
+        return [];
+    }
 }
 
+// Encontrar la siguiente carrera
 function encontrarSiguienteCarrera(carreras) {
     const ahora = new Date();
     for (let carrera of carreras) {
@@ -51,6 +55,36 @@ function iniciarCuentaAtras(fechaCarrera) {
 }
 
 // ===============================
+// PILOTOS
+// ===============================
+async function cargarPilotos() {
+    try {
+        const response = await fetch('/f1/api/pilotos');
+        const pilotos = await response.json();
+        const tbody = document.querySelector('#pilotos-table tbody');
+
+        tbody.innerHTML = ''; // Limpiamos antes de rellenar
+
+        pilotos.forEach(p => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${p.numero}</td>
+                <td>${p.nombre}</td>
+                <td>${p.apellido}</td>
+                <td>${p.equipo || '-'}</td>
+                <td>${p.nacionalidad}</td>
+                <td>${p.codigo}</td>
+            `;
+            tbody.appendChild(fila);
+        });
+    } catch (error) {
+        console.error('Error cargando pilotos:', error);
+        const tbody = document.querySelector('#pilotos-table tbody');
+        tbody.innerHTML = `<tr><td colspan="6">No se pudieron cargar los pilotos</td></tr>`;
+    }
+}
+
+// ===============================
 // INIT PRINCIPAL
 // ===============================
 async function init() {
@@ -66,26 +100,27 @@ async function init() {
         return;
     }
 
-    // Mostramos el nombre de la próxima carrera
+    // 3) Mostrar nombre de la próxima carrera
     document.querySelector(".cuenta-atras h3").textContent =
         `Cuenta atrás para el GP de ${proxima.raceName}`;
 
-    // 3) Poner la cuenta atrás
+    // 4) Iniciar cuenta atrás
     iniciarCuentaAtras(proxima.fecha);
 
-    // 4) Si estamos en fin de semana de carrera o justo comienza
+    // 5) Indicar modo carrera o pronóstico
     const ahora = new Date();
     if (ahora >= proxima.fecha) {
-        // Aquí puedes pedir sesiones o tiempos reales si la API lo soporta
-        console.log("Estamos en modo carrera");
         document.getElementById("session-info").textContent =
             "Modo carrera — datos en vivo o resultados";
     } else {
-        // Modo pronóstico/previo
-        console.log("Estamos antes del fin de semana de carrera");
         document.getElementById("session-info").textContent =
             `Próxima sesión de ${proxima.raceName}`;
     }
+
+    // 6) Cargar pilotos al inicio y cada minuto
+    cargarPilotos();
+    setInterval(cargarPilotos, 60000); // refresco cada 60 segundos
 }
 
+// Arrancar todo al cargar la página
 document.addEventListener("DOMContentLoaded", init);

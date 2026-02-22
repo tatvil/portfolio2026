@@ -21,20 +21,22 @@
 
     <main class="dashboard">
         <section class="stat-card">
-            <h3 id="session-info">Cargando sesión...</h3>
-            <div id="api-status">Buscando señal...</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nº</th>
-                        <th>Piloto</th>
-                        <th>Escudería</th>
-                        <th>Siglas</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-pilotos-body">
+            <h3 id="session-info">Pilotos</h3>
+            <table id="pilotos-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Equipo</th>
+                            <th>Nacionalidad</th>
+                            <th>Código</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se llenarán los pilotos -->
                     </tbody>
-            </table>
+                </table>
         </section>
 
         <section class="stat-card">
