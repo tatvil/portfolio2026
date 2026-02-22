@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Stats Pro - Panel de Control</title>
+    <link rel="stylesheet" href="css/f1.css">
+</head>
+<body>
+
+    <header>
+        <h1>Estadísticas F1</h1>
+    </header>
+
+    <section class="stat-card cuenta-atras">
+    <h3 > Cuenta atrás para el GP de Australia 2026</h3>
+    <div id="countdown">
+        00d 00h 00m 00s
+    </div>
+</section>
+
+    <main class="dashboard">
+        <section class="stat-card">
+            <h3 id="session-info">Cargando sesión...</h3>
+            <div id="api-status">Buscando señal...</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nº</th>
+                        <th>Piloto</th>
+                        <th>Escudería</th>
+                        <th>Siglas</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-pilotos-body">
+                    </tbody>
+            </table>
+        </section>
+
+        <section class="stat-card">
+            <h3>Telemetría en Vivo (Sector 1)</h3>
+            <p>Velocidad Punta: <strong>334 km/h</strong></p>
+            <p>Estado de Pista: <strong>Seco</strong></p>
+            <p>Récord de vuelta: <strong>1:16.623</strong></p>
+        </section>
+
+        <section class="stat-card" style="border-left-color: var(--f1-red);">
+            <h3>Admin Info (Debug)</h3>
+            <ul>
+                <li>DB: PostgreSQL 15</li>
+                <li>API Status: Online</li>
+                <li>Last Backup: 02:00 AM</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="js/f1.js"></script>
+</body>
+</html>
