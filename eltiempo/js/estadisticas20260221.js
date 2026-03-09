@@ -9,19 +9,23 @@ const monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio",
 let selectedMonth = new Date().getMonth(); // mes actual
 let ciudadActual = "Madrid"; // ciudad por defecto
 
-//  const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
-const BASE_API = "https://tatvil.es/apis/api/weather/filter";
+const BASE_API = "https://aplicacionesdevanguardia.es/eltiempo/servidor/api-weather-fechas.php";
 
-function buildApiUrl({ ciudad, desde, hasta }) {
+// ====================
+// Construir URL de API según filtros
+// ====================
+function buildApiUrl({ ciudad, fecha = null, desde = null, hasta = null }) {
     const params = new URLSearchParams();
     params.append("ciudad", ciudad);
-    params.append("desde", desde);
-    params.append("hasta", hasta);
-    
-    console.log("Construyendo URL con parámetros:", { ciudad, desde, hasta });
+    if (fecha) params.append("fecha", fecha);
+    if (desde) params.append("desde", desde);
+    if (hasta) params.append("hasta", hasta);
+
+    console.log("24 - Construyendo URL con parámetros:", { ciudad, fecha, desde, hasta });
     console.log("URL API:", `${BASE_API}?${params.toString()}`);
 
     return `${BASE_API}?${params.toString()}`;
+    
 }
 
 // ====================
@@ -36,17 +40,16 @@ function updateMonthHeader() {
 // ====================
 async function loadStats(options = {}) {
     try {
-        const url = buildApiUrl({ ciudad: ciudadActual, ...options });
+        const url = buildApiUrl({
+            ciudad: ciudadActual,
+            ...options
+        });
 
         const response = await fetch(url);
         if (!response.ok) throw new Error("Error cargando datos: " + response.status);
 
-        let data = await response.json(); // Cambia 'const' por 'let'
+        const data = await response.json();
         if (!data || !data.length) throw new Error("Datos vacíos");
-
-        // --- FILTRADO POR CIUDAD (Importante mientras Java no filtre) ---
-        data = data.filter(d => d.ciudad === ciudadActual);
-        // ----------------------------------------------------------------
 
         renderLastData(data);
         renderMonthStats(data);
@@ -112,17 +115,10 @@ function getMoonPhase() {
 // Estadísticas del mes seleccionado
 // ====================
 function renderMonthStats(data) {
-    // Esta es la clave: filtrar por el mes seleccionado antes de calcular
-    const monthData = data.filter(d => {
-        const fechaDato = new Date(d.dia);
-        return fechaDato.getMonth() === selectedMonth;
-    });
+    const monthData = data.filter(d => new Date(d.dia).getMonth() === selectedMonth);
 
-    if (!monthData.length) {
-        // Si no hay datos, ponemos a cero para que no salgan cosas raras
-        $("month-days").textContent = 0;
-        return;
-    }
+    if (!monthData.length) return;
+
     const maxTemps = monthData.map(d => d.temp_max);
     const minTemps = monthData.map(d => d.temp_min);
     const lluvia = monthData.reduce((sum, d) => sum + parseFloat(d.lluvia), 0);
