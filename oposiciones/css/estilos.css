@@ -53,6 +53,29 @@ header h1 {
     margin: 0;
 }
 
+/* Navbar */
+.navbar {
+    background-color: var(--color-cabecera); /* var(--color-cabecera) con opacidad */
+    border-bottom: 2px solid var(--color-borde);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: var(--color-acento) !important;
+}
+
+.nav-link {
+    color: var(--color-texto) !important;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    color: var(--color-acento) !important;
+}
+
+
 /* ======================
    TITULOS
 ====================== */
