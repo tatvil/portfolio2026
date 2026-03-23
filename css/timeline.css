@@ -1,0 +1,73 @@
+ :root {
+ /* Paleta de el tiempo */
+    --color-primario: #F5F5F5;   
+    --color-hover: #1E3A5F;      
+    --color-secundario: #A1A1A1; 
+    --color-fondo: #0D0D0D;      
+    --color-texto: #E5E5E5;   
+    --blanco-puro: #FFFFFF;
+    --sombra: rgba(47, 58, 86, 0.15);
+    --color-tarjeta: #1A1A1A;
+    --color-acento: #a4d7f4;
+    --gray: #acb3bf;
+    --color-borde: rgba(95, 174, 219, 0.3);
+    --color-cabecera: rgba(0,0,0,0.80);
+
+    --bg-vs: #1e1e1e; /* Fondo principal */
+    --bg-nav: #252526; /* Fondo de barra de navegación */
+    --bg-card: #2d2d2d; /* Fondo de tarjetas/secciones */
+    --keyword: #aaffff; /* Azul grisaceo  */
+    --string: #ce9178; /* Naranja/Salmón (textos) */
+    --comment: #6a9955; /* Verde (comentarios) */
+    --var-name: #9cdcfe; /* Azul claro (variables) */
+    --text: #d4d4d4; /* Gris claro (texto normal) */
+    --border-editor: #3e3e42; /* Color de bordes y líneas */
+}
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+.timeline h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: #ddd;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-date {
+    width: 45%;
+    text-align: right;
+    font-weight: bold;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+    text-align: left;
+}
+
+.timeline-content {
+    width: 45%;
+    background: var(--color-tarjeta);
+    padding: 15px;
+    border-radius: 6px;
+}
