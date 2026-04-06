@@ -156,3 +156,34 @@ button#aleatoria {
     border-radius: 4px;
     margin-left: 5px;
 }
+
+/* --- AJUSTES PARA MÓVIL --- */
+@media (max-width: 600px) {
+    body {
+        font-size: 1.25rem; /* Aumenta la legibilidad */
+        padding: 0 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .pregunta {
+        padding: 1.5rem;
+    }
+
+    .opcion {
+        font-size: 1.15rem;
+        padding: 14px;
+    }
+
+    .marcador-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .nota-actual strong {
+        font-size: 1.4rem;
+    }
+}
