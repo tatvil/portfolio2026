@@ -174,7 +174,13 @@ button#aleatoria {
 
     .opcion {
         font-size: 1.15rem;
-        padding: 14px;
+        padding: 18px;
+        margin: 12px 0;
+    }
+
+    .opcion input[type="radio"] {
+        transform: scale(1.5);
+        margin-right: 15px;
     }
 
     .marcador-container {
