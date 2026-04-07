@@ -245,4 +245,9 @@ a:focus-visible {
   ol li {
     margin-bottom: 1rem; /* Más separación entre temas para poder pulsar bien */
   }
+    a {
+        text-decoration: none;
+        color: var(--color-texto);
+        transition: color 0.25s ease;
+    }
 }

@@ -157,6 +157,59 @@ button#aleatoria {
     margin-left: 5px;
 }
 
+.supuesto-container {
+    max-height: 200px; /* Para que no ocupe toda la pantalla */
+    overflow-y: auto;  /* Si es muy largo, sale scroll */
+    border-radius: 4px;
+    line-height: 1.4;
+}
+
+/* Contenedor de la pregunta */
+.pregunta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px; /* Tamaño mínimo para que no salte el contenido */
+    padding-bottom: 80px; /* Espacio para que los botones no tapen el texto */
+}
+
+/* Contenedor de los botones */
+.acciones-quiz {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px; /* Al darle left y right, el contenedor ocupa todo el ancho de la tarjeta */
+    display: flex;
+    justify-content: space-between; /* ¡ESTA ES LA MAGIA! Uno a cada punta */
+    align-items: center;
+    gap: 0; /* Ya no necesitamos gap fijo */
+}
+
+/* Estilo de los botones (limpiamos el left/right manual que tenías) */
+.btn-principal {
+    background-color: var(--titulos-color);
+    color: white;
+    padding: 12px 25px;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-principal:hover {
+    background-color: var(--hover-bg);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 12px 20px;
+}
+
+.btn-secundario:hover {
+    background-color: var(--hover-bg);
+}
+
+
 /* --- AJUSTES PARA MÓVIL --- */
 @media (max-width: 600px) {
     body {
@@ -191,5 +244,16 @@ button#aleatoria {
 
     .nota-actual strong {
         font-size: 1.4rem;
+    }
+
+    .acciones-quiz {
+        width: calc(100% - 40px); /* Ocupa todo el ancho menos el padding */
+        left: 20px;
+        justify-content: space-between; /* Uno a cada lado */
+        bottop: 10px; /* Para que no se quede pegado al fondo */
+    }
+    
+    .pregunta {
+        min-height: 450px;
     }
 }

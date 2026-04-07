@@ -44,22 +44,42 @@ function mostrarSiguientePregunta() {
     const p = preguntasCargadas[estado.indiceActual];
     actualizarMarcador();
 
+    // Lógica para mostrar el supuesto si existe
+    let htmlContexto = "";
+    if (p.contexto) {
+        htmlContexto = `
+            <div class="supuesto-container" style="background: #2d2d2d; border-left: 5px solid var(--accent-color); padding: 15px; margin-bottom: 20px; font-size: 0.9rem; border-radius: 4px;">
+                <h3 style="color: var(--accent-color); margin-top: 0;">📋 ${p.contexto.supuesto}</h3>
+                <p><em>${p.contexto.descripcion}</em></p>
+            </div>
+        `;
+    }
+
     preguntaActualContenedor.innerHTML = `
         <div class="pregunta">
+            ${htmlContexto}
             <p><strong>Pregunta ${estado.indiceActual + 1} de ${preguntasCargadas.length}</strong></p>
             <p>${p.pregunta}</p>
             ${Object.entries(p.opciones).map(([letra, texto]) => `
                 <label class="opcion">
                     <input type="radio" name="respuesta" value="${letra}">
-                    ${letra}) ${texto}
+                    ${letra}) ${texto.replace(/</g, "&lt;").replace(/>/g, "&gt;")} 
                 </label>
             `).join("")}
             <br>
-            <button id="comprobar">Comprobar y Siguiente</button>
+            <div class="acciones-quiz">
+                <button id="comprobar" class="btn-principal">Comprobar</button>
+                <button id="saltar" class="btn-secundario">Saltar Pregunta</button>
+            </div>
         </div>
     `;
 
     document.getElementById("comprobar").onclick = () => validarRespuesta(p);
+    document.getElementById("saltar").onclick = () => saltarPregunta();
+}
+function saltarPregunta() {
+    estado.indiceActual++;
+    mostrarSiguientePregunta();
 }
 
 function validarRespuesta(p) {
@@ -84,28 +104,18 @@ function validarRespuesta(p) {
 }
 
 function actualizarMarcador() {
-    const contestadas = estado.indiceActual; // Preguntas que ya pasaron
+    // Fórmula oficial TAI: (Aciertos - (Fallos / 3)) / TotalPreguntas * 10
+    const puntosNetos = estado.aciertos - (estado.fallos / 3);
+    let notaSobreDiez = (puntosNetos / preguntasCargadas.length) * 10;
     
-    // Si aún no hemos contestado ninguna, la nota es 0.00
-    let notaSobreDiez = 0;
-
-    if (contestadas > 0) {
-        // Fórmula de puntos netos (AGE): Aciertos - (Fallos / 3)
-        const puntosNetos = estado.aciertos - (estado.fallos / 3);
-        
-        // Calculamos la nota sobre 10 basada SOLO en las contestadas hasta ahora
-        notaSobreDiez = (puntosNetos / contestadas) * 10;
-        
-        // Evitamos notas negativas si hay muchísimos fallos
-        if (notaSobreDiez < 0) notaSobreDiez = 0;
-    }
+    if (notaSobreDiez < 0) notaSobreDiez = 0;
 
     resultado.innerHTML = `
         <div class="marcador-container">
             <div class="stat">Aciertos: <span class="verde">${estado.aciertos}</span></div>
             <div class="stat">Fallos: <span class="rojo">${estado.fallos}</span></div>
-            <div class="stat">Progreso: <span>${contestadas} / ${preguntasCargadas.length}</span></div>
-            <div class="nota-actual">Nota actual: <strong>${notaSobreDiez.toFixed(2)}</strong></div>
+            <div class="stat">En blanco: <span>${estado.indiceActual - (estado.aciertos + estado.fallos)}</span></div>
+            <div class="nota-actual">Nota proyectada: <strong>${notaSobreDiez.toFixed(2)}</strong></div>
         </div>
     `;
 }
