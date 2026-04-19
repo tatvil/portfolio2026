@@ -142,6 +142,53 @@ body {
   margin-bottom: 1rem;
 }
 
+.game-btn {
+    font-size: 2.5rem;
+    padding: 10px;
+    border: var(--borde); /* Usamos tu variable de borde */
+    border-radius: 50%;
+    background: var(--color-secundario);
+    color: var(--color-texto);
+    cursor: pointer;
+    transition: transform var(--transicion), background var(--transicion), box-shadow var(--transicion);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.3rem;
+}
+
+.game-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px var(--color-acento);
+    background: var(--color-fondo);
+}
+
+/* Clase que añade el JS al hacer click */
+.game-btn.seleccionada {
+    box-shadow: 0 0 20px var(--color-acento);
+    transform: scale(1.2);
+    border-color: var(--color-acento);
+}
+
+.game-btn-pc {
+    font-size: 2.5rem;
+    opacity: 0.3;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Clase para resaltar la elección del PC */
+.pc-elegido {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
 /* Imágenes */
 .btn-img {
   width: 70px;
@@ -173,6 +220,95 @@ body {
   width: 80%;
   max-width: 250px;
   margin-top: 1rem;
+}
+
+/* ── Mapa SVG interactivo ─────────────────────────────────── */
+.mapa-svg {
+  width: 90%;
+  max-width: 320px;
+  margin-top: 1rem;
+  overflow: visible;
+}
+
+/* Líneas de conexión */
+.conexion {
+  stroke: var(--color-primario);
+  stroke-width: 1.5;
+  opacity: 0.3;
+  transition: stroke 0.25s, stroke-width 0.25s, opacity 0.25s;
+}
+
+/* Nodos: círculo base */
+.nodo circle {
+  fill: var(--color-secundario);
+  stroke: var(--color-primario);
+  stroke-width: 2;
+  transition: fill 0.25s, stroke 0.25s, filter 0.25s, opacity 0.25s;
+}
+
+.nodo-emoji {
+  font-size: 20px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.nodo-label {
+  font-size: 10px;
+  fill: var(--color-texto);
+  font-family: var(--fuente-base);
+  pointer-events: none;
+  transition: opacity 0.25s, fill 0.25s;
+}
+
+/* ── Estados al pasar el ratón sobre un botón ─────────────── */
+
+/* Atenúa todas las conexiones cuando el mapa está activo */
+.mapa-activo .conexion {
+  opacity: 0.1;
+}
+
+/* Resalta las conexiones activas (las del botón en hover) */
+.mapa-activo .conexion.conexion-activa {
+  stroke: var(--color-acento);
+  stroke-width: 2.5;
+  opacity: 1;
+}
+
+/* Nodo origen (la opción sobre la que se hace hover) */
+.nodo.nodo-origen circle {
+  stroke: var(--color-acento);
+  stroke-width: 3;
+}
+
+/* Nodos vencidos: se iluminan en dorado */
+.nodo.nodo-vencido circle {
+  fill: var(--color-acento);
+  stroke: var(--color-acento);
+  filter: drop-shadow(0 0 7px var(--color-acento));
+}
+
+.nodo.nodo-vencido .nodo-label {
+  fill: var(--color-acento);
+  font-weight: 700;
+  opacity: 1;
+}
+
+/* El resto de nodos se atenúa */
+.mapa-activo .nodo:not(.nodo-vencido):not(.nodo-origen) circle {
+  opacity: 0.35;
+}
+.mapa-activo .nodo:not(.nodo-vencido):not(.nodo-origen) .nodo-label {
+  opacity: 0.35;
+}
+
+/* Texto de pista debajo del mapa */
+.mapa-hint-texto {
+  font-size: 0.8rem;
+  color: var(--color-acento);
+  font-weight: 600;
+  min-height: 1.2rem;
+  margin-top: 0.4rem;
+  transition: opacity 0.25s;
 }
 
 /* Texto */

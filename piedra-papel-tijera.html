@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Piedra · Papel · Tijera · Lagarto · Spock</title>
-
     <script src="js/piedra.js" defer></script>
     <link rel="stylesheet" href="css/piedra-papel-tijera.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -27,7 +26,6 @@
 
     <main class="cuerpo">
 
-        <!-- Jugador -->
         <section class="columna" id="persona">
             <header class="cabecera-jugador">
                 <p id="etiquetaJugador">Puntuación Jugador:</p>
@@ -35,23 +33,79 @@
             </header>
 
             <div class="opciones">
-                <img src="img/piedra-papel-tijera/piedra.png"  id="piedra"  class="btn-img" alt="Piedra">
-                <img src="img/piedra-papel-tijera/papel.png"   id="papel"   class="btn-img" alt="Papel">
-                <img src="img/piedra-papel-tijera/tijera.png"  id="tijera"  class="btn-img" alt="Tijera">
-                <img src="img/piedra-papel-tijera/lagarto.png" id="lagarto" class="btn-img" alt="Lagarto">
-                <img src="img/piedra-papel-tijera/spock.png"   id="spock"   class="btn-img" alt="Spock">
+                <button class="game-btn" id="piedra" data-choice="piedra" title="Piedra">🪨</button>
+                <button class="game-btn" id="papel" data-choice="papel" title="Papel">📄</button>
+                <button class="game-btn" id="tijera" data-choice="tijera" title="Tijera">✂️</button>
+                <button class="game-btn" id="lagarto" data-choice="lagarto" title="Lagarto">🦎</button>
+                <button class="game-btn" id="spock" data-choice="spock" title="Spock">🖖</button>
             </div>
 
             <p class="grande" id="eleccionjugador">¿Qué eliges?</p>
         </section>
 
-        <!-- Centro -->
         <section class="columna" id="imagencentro">
             <p class="grande" id="resultado">Resultado</p>
-            <img src="img/piedra-papel-tijera/esquemaminimalista.png" class="central-img" alt="Esquema del juego">
+
+            <!-- Mapa interactivo: pasa el ratón sobre los botones para ver qué vence cada opción -->
+            <svg id="mapa-juego" class="mapa-svg" viewBox="0 0 350 290" xmlns="http://www.w3.org/2000/svg" aria-label="Mapa de reglas del juego">
+
+                <!-- Conexiones (quién vence a quién) -->
+                <!-- piedra → tijera -->
+                <line class="conexion" data-from="piedra" data-to="tijera"   x1="253" y1="127" x2="133" y2="213"/>
+                <!-- piedra → lagarto -->
+                <line class="conexion" data-from="piedra" data-to="lagarto"  x1="266" y1="137" x2="246" y2="203"/>
+                <!-- papel → piedra -->
+                <line class="conexion" data-from="papel"  data-to="piedra"   x1="102" y1="112" x2="248" y2="112"/>
+                <!-- papel → spock -->
+                <line class="conexion" data-from="papel"  data-to="spock"    x1="97"  y1="97"  x2="154" y2="57"/>
+                <!-- tijera → papel -->
+                <line class="conexion" data-from="tijera" data-to="papel"    x1="104" y1="203" x2="84"  y2="137"/>
+                <!-- tijera → lagarto -->
+                <line class="conexion" data-from="tijera" data-to="lagarto"  x1="138" y1="228" x2="212" y2="228"/>
+                <!-- lagarto → papel -->
+                <line class="conexion" data-from="lagarto" data-to="papel"   x1="217" y1="213" x2="97"  y2="127"/>
+                <!-- lagarto → spock -->
+                <line class="conexion" data-from="lagarto" data-to="spock"   x1="230" y1="203" x2="183" y2="67"/>
+                <!-- spock → piedra -->
+                <line class="conexion" data-from="spock"  data-to="piedra"   x1="196" y1="57"  x2="253" y2="97"/>
+                <!-- spock → tijera -->
+                <line class="conexion" data-from="spock"  data-to="tijera"   x1="167" y1="67"  x2="120" y2="203"/>
+
+                <!-- Nodos (posiciones en pentágono) -->
+                <g class="nodo" id="nodo-spock">
+                    <circle cx="175" cy="42" r="26"/>
+                    <text x="175" y="42" text-anchor="middle" dominant-baseline="central" class="nodo-emoji">🖖</text>
+                    <text x="175" y="8"  text-anchor="middle" class="nodo-label">Spock</text>
+                </g>
+
+                <g class="nodo" id="nodo-piedra">
+                    <circle cx="274" cy="112" r="26"/>
+                    <text x="274" y="112" text-anchor="middle" dominant-baseline="central" class="nodo-emoji">🪨</text>
+                    <text x="308" y="116" text-anchor="start" class="nodo-label">Piedra</text>
+                </g>
+
+                <g class="nodo" id="nodo-lagarto">
+                    <circle cx="238" cy="228" r="26"/>
+                    <text x="238" y="228" text-anchor="middle" dominant-baseline="central" class="nodo-emoji">🦎</text>
+                    <text x="238" y="272" text-anchor="middle" class="nodo-label">Lagarto</text>
+                </g>
+
+                <g class="nodo" id="nodo-tijera">
+                    <circle cx="112" cy="228" r="26"/>
+                    <text x="112" y="228" text-anchor="middle" dominant-baseline="central" class="nodo-emoji">✂️</text>
+                    <text x="112" y="272" text-anchor="middle" class="nodo-label">Tijera</text>
+                </g>
+
+                <g class="nodo" id="nodo-papel">
+                    <circle cx="76" cy="112" r="26"/>
+                    <text x="76"  y="112" text-anchor="middle" dominant-baseline="central" class="nodo-emoji">📄</text>
+                    <text x="42"  y="116" text-anchor="end"   class="nodo-label">Papel</text>
+                </g>
+            </svg>
+
+            <p id="mapa-hint" class="mapa-hint-texto"></p>
         </section>
 
-        <!-- Ordenador -->
         <section class="columna" id="ordenador">
             <header class="cabecera-jugador">
                 <p>Puntuación Ordenador:</p>
@@ -59,11 +113,11 @@
             </header>
 
             <div class="opciones">
-                <img src="img/piedra-papel-tijera/piedra.png"  class="btn-img" alt="Piedra">
-                <img src="img/piedra-papel-tijera/papel.png"   class="btn-img" alt="Papel">
-                <img src="img/piedra-papel-tijera/tijera.png"  class="btn-img" alt="Tijera">
-                <img src="img/piedra-papel-tijera/lagarto.png" class="btn-img" alt="Lagarto">
-                <img src="img/piedra-papel-tijera/spock.png"   class="btn-img" alt="Spock">
+                <div class="game-btn-pc" id="pc-piedra">🪨</div>
+                <div class="game-btn-pc" id="pc-papel">📄</div>
+                <div class="game-btn-pc" id="pc-tijera">✂️</div>
+                <div class="game-btn-pc" id="pc-lagarto">🦎</div>
+                <div class="game-btn-pc" id="pc-spock">🖖</div>
             </div>
 
             <p class="grande" id="eleccionordenador">Elección del ordenador</p>
@@ -71,7 +125,7 @@
 
     </main>
 
-     <footer class="py-5 text-center">
+    <footer class="py-5 text-center">
         <div class="container">
             <p class="mb-0">&copy; 2026 - Tatiana Villa</p>
         </div>
