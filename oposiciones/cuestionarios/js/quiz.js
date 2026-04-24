@@ -5,13 +5,38 @@
  */
 
 // ── Estado ──────────────────────────────────────────────────
-let preguntas     = [];
-let supuestosData = {};   // { "Supuesto I": [...], "Supuesto II": [...] }
-let faseActual    = 'test'; // 'test' | 'supuesto'
-let indice        = 0;
-let aciertos      = 0;
-let fallos        = 0;
-let respondida    = false;
+let preguntas        = [];
+let supuestosData    = {};   // { "Supuesto I": [...], "Supuesto II": [...] }
+let faseActual       = 'test'; // 'test' | 'supuesto'
+let indice           = 0;
+let aciertos         = 0;
+let fallos           = 0;
+let respondida       = false;
+let preguntasFalladas = []; // { pregunta, elegida }
+
+// ── Mapa de temas y palabras clave ──────────────────────────
+const TEMAS_KW = [
+  { id:'const',  label:'Constitución Española',             link:'../curso.html?bloque=1', kw:['constitución','constitucional','rey ','cortes generales','senado','congreso','diputad','tribunal constitucional','defensor del pueblo','artículo 62','artículo 63','título i','título ii','artículo 1 ','capítulo'] },
+  { id:'p39',    label:'Procedimiento Adm. (Ley 39/2015)',   link:'../curso.html?bloque=1', kw:['ley 39','procedimiento administrativo','recurso de alzada','silencio administrativo','notificación','expediente administrativo','recurso potestativo','recurso extraordinario'] },
+  { id:'p40',    label:'Régimen Jurídico (Ley 40/2015)',     link:'../curso.html?bloque=1', kw:['ley 40','órgano colegiado','delegación de competencia','avocación','administración general del estado','convenio interadministrativo'] },
+  { id:'lcsp',   label:'Contratación Pública (LCSP)',        link:'../curso.html?bloque=1', kw:['contratos del sector público','lcsp','licitación','adjudicación','pliego','contrato menor','concesión de servicios','poder adjudicador'] },
+  { id:'trebep', label:'Función Pública (TREBEP)',           link:'../curso.html?bloque=1', kw:['trebep','funcionario','empleado público','oposición','provisión de puestos','situaciones administrativas','excedencia','régimen disciplinario','carrera profesional'] },
+  { id:'hac',    label:'Hacienda Pública / Presupuestos',   link:'../curso.html?bloque=1', kw:['presupuesto','hacienda pública','igae','tribunal de cuentas','crédito presupuestario','gasto público','control financiero','intervención general'] },
+  { id:'html',   label:'HTML / CSS / JavaScript',           link:'../curso.html?bloque=3', kw:['html','css','javascript','dom','<input','etiqueta','formulario web','diseño web','responsive','selector css'] },
+  { id:'bd',     label:'Bases de Datos / SQL',              link:'../curso.html?bloque=3', kw:['sql','select ','join','base de datos','normalización','índice','relacional','trigger','procedimiento almacenado','sgbd','tabla '] },
+  { id:'prog',   label:'Programación / Algoritmos',         link:'../curso.html?bloque=3', kw:['algoritmo','lenguaje de programación','java ','python','c# ','compilad','interpreta','orientado a objetos','array','recursiv','metodología ágil','scrum','git'] },
+  { id:'redes',  label:'Redes y Comunicaciones',            link:'../curso.html?bloque=4', kw:['tcp/ip','protocolo','router','switch','vlan','dirección ip','máscara de red','ethernet','arp','dns','dhcp','ospf','bgp','mpls'] },
+  { id:'seg',    label:'Seguridad Informática',             link:'../curso.html?bloque=4', kw:['cifrado','criptografía','firma digital','certificado digital','ssl','tls','vpn','firewall','ciberincidente','autenticación','hash','ransomware','ids ','ips '] },
+  { id:'so',     label:'Sistemas Operativos / Hardware',    link:'../curso.html?bloque=2', kw:['sistema operativo','linux','windows server','proceso','kernel','sistema de ficheros','raid','virtualización','contenedor','cpu','procesador','memoria ram'] },
+];
+
+function detectarTema(txt) {
+  const t = txt.toLowerCase();
+  for (const tema of TEMAS_KW) {
+    if (tema.kw.some(k => t.includes(k))) return tema;
+  }
+  return { id:'otro', label:'Otros / Material general', link:'../curso.html' };
+}
 
 // ── Elementos DOM ────────────────────────────────────────────
 const selExamen       = document.getElementById('sel-examen');
@@ -107,11 +132,12 @@ async function iniciarExamen() {
     return;
   }
 
-  faseActual = 'test';
-  indice     = 0;
-  aciertos   = 0;
-  fallos     = 0;
-  respondida = false;
+  faseActual        = 'test';
+  indice            = 0;
+  aciertos          = 0;
+  fallos            = 0;
+  respondida        = false;
+  preguntasFalladas = [];
 
   mostrarSolo('quiz');
   actualizarMarcador();
@@ -155,12 +181,13 @@ function mostrarSelectorSupuesto() {
 }
 
 function iniciarSupuesto(nombre) {
-  preguntas  = supuestosData[nombre] || [];
-  faseActual = 'supuesto';
-  indice     = 0;
-  aciertos   = 0;
-  fallos     = 0;
-  respondida = false;
+  preguntas         = supuestosData[nombre] || [];
+  faseActual        = 'supuesto';
+  indice            = 0;
+  aciertos          = 0;
+  fallos            = 0;
+  respondida        = false;
+  preguntasFalladas = [];
   mostrarSolo('quiz');
   actualizarMarcador();
   mostrarPregunta();
@@ -237,8 +264,7 @@ function comprobar(p) {
     elFeedback.textContent = '✔ ¡Correcto!';
     elFeedback.className = 'question-feedback show ok';
   } else {
-    fallos++;
-    elFeedback.textContent = `✘ Incorrecto. La respuesta correcta era la ${p.correcta.toUpperCase()})`;
+    fallos++;    preguntasFalladas.push({ pregunta: p, elegida: marcada.value });    elFeedback.textContent = `✘ Incorrecto. La respuesta correcta era la ${p.correcta.toUpperCase()})`;
     elFeedback.className = 'question-feedback show ko';
   }
 
@@ -283,6 +309,54 @@ function finalizarExamen() {
   const notaNum = parseFloat(nota);
   const color   = notaNum >= 5 ? 'var(--success)' : notaNum >= 4 ? 'var(--warning)' : 'var(--error)';
   document.getElementById('final-nota').style.color = color;
+
+  renderRepaso();
+}
+
+function renderRepaso() {
+  const wrap = document.getElementById('repaso-wrap');
+  if (!wrap) return;
+
+  if (preguntasFalladas.length === 0) {
+    wrap.innerHTML = '<p class="repaso-perfecto"><i class="fas fa-star"></i> ¡Sin fallos! Dominas todo el temario de este examen.</p>';
+    wrap.style.display = 'block';
+    return;
+  }
+
+  // Agrupar fallos por tema detectado
+  const grupos = {};
+  for (const { pregunta, elegida } of preguntasFalladas) {
+    const tema = detectarTema(pregunta.pregunta);
+    if (!grupos[tema.id]) grupos[tema.id] = { tema, items: [] };
+    grupos[tema.id].items.push({ pregunta, elegida });
+  }
+
+  const n = preguntasFalladas.length;
+  wrap.innerHTML = `
+    <h3 class="repaso-titulo"><i class="fas fa-exclamation-triangle"></i> Necesitas repasar</h3>
+    <p class="repaso-intro">Has fallado <strong>${n}</strong> pregunta${n > 1 ? 's' : ''}. Estos son los temas donde debes reforzar:</p>
+    ${Object.values(grupos).map(g => `
+      <details class="repaso-grupo" open>
+        <summary class="repaso-tema">
+          <span class="repaso-tema-name"><i class="fas fa-book"></i> ${escHtml(g.tema.label)}</span>
+          <span class="repaso-badge">${g.items.length} fallo${g.items.length > 1 ? 's' : ''}</span>
+        </summary>
+        <ul class="repaso-lista">
+          ${g.items.map(({ pregunta: p, elegida }) => `
+            <li class="repaso-item">
+              <p class="repaso-q">${escHtml(p.pregunta.length > 140 ? p.pregunta.slice(0,140)+'…' : p.pregunta)}</p>
+              <div class="repaso-answers">
+                <span class="repaso-ans ko"><i class="fas fa-times"></i> Tu resp.: ${elegida.toUpperCase()}) ${escHtml((p.opciones[elegida]||'').length > 70 ? p.opciones[elegida].slice(0,70)+'…' : (p.opciones[elegida]||''))}</span>
+                <span class="repaso-ans ok"><i class="fas fa-check"></i> Correcta: ${p.correcta.toUpperCase()}) ${escHtml((p.opciones[p.correcta]||'').length > 70 ? p.opciones[p.correcta].slice(0,70)+'…' : (p.opciones[p.correcta]||''))}</span>
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+        <a href="${g.tema.link}" class="repaso-link-tema"><i class="fas fa-book-open"></i> Estudiar este tema</a>
+      </details>
+    `).join('')}
+  `;
+  wrap.style.display = 'block';
 }
 
 // ── Helpers ───────────────────────────────────────────────────
