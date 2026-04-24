@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAI – AGE | Temario</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Topbar ─────────────────────────────────────────── -->
+  <nav class="topbar">
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menú">
+      <i class="fas fa-bars"></i>
+    </button>
+    <a href="index.html" class="topbar-brand" style="text-decoration:none">
+      <i class="fas fa-graduation-cap"></i> TAI – AGE
+    </a>
+    <nav class="topbar-nav">
+      <a href="index.html">Inicio</a>
+      <a href="curso.html" class="active">Temario</a>
+      <a href="cuestionarios/index.html">Cuestionarios</a>
+    </nav>
+    <span class="topbar-progress" id="topbar-progress">1 / 33</span>
+  </nav>
+
+  <!-- ── Layout ─────────────────────────────────────────── -->
+  <div class="player-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <!-- Rellena js/curso.js -->
+    </aside>
+
+    <!-- Content -->
+    <main class="content-pane">
+      <div id="lesson-content">
+        <div class="spinner"><i class="fas fa-circle-notch fa-spin"></i></div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ── Scripts ────────────────────────────────────────── -->
+  <!-- marked.js para renderizar Markdown en el cliente -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+  <script src="js/temas.js"></script>
+  <script src="js/curso.js"></script>
+
+</body>
+</html>
