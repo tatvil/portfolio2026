@@ -1,0 +1,391 @@
+/* Fuentes importadas corregidas */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600&display=swap');
+
+:root {
+    /* Paleta refinada */
+    --color-primario: #2F3A56;   /* Azul noche espiritual */
+    --color-hover: #24314A;      /* Azul noche más oscuro */
+    --color-secundario: #EAF2FA; /* Azul muy suave */
+    --color-fondo: #FAF7F2;      /* Crema papel antiguo */
+    --color-texto: #2b2b2b;
+    --color-acento: #E8A23A;     /* Dorado litúrgico */
+    --blanco-puro: #FFFFFF;
+    --sombra: rgba(47, 58, 86, 0.15);
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif; /* Fuente base moderna */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* --- CABECERA --- */
+.header-hoy {
+    color: var(--blanco-puro);
+    text-align: center;
+    min-height: 300px; /* ajusta según tu diseño */
+    padding: 2rem;
+    background-color: var(--color-primario);
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.8s ease; /* Para que el cambio litúrgico sea suave */
+}
+
+
+.titulo {
+    font-family: 'EB Garamond', serif;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+}
+
+.fecha {
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    font-family: 'EB Garamond', serif;
+    opacity: 0.9;
+}
+
+.ciclo {
+    letter-spacing: 2px;
+    margin-top: 0.3rem;
+    opacity: 0.8;
+    font-family: 'EB Garamond', serif;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+
+#indicador-liturgico {
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem; /* Añadimos este margen para empujar el contenido hacia abajo */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+/* --- BLOQUE DEL SANTO --- */
+.santo {
+    background: var(--blanco-puro);
+    margin: 20px auto; /* Cambiamos el negativo por uno positivo para dar aire */
+    padding: 1.5rem;
+    border: 2px solid var(--color-acento);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(232, 162, 58, 0.5);
+    position: relative;
+    z-index: 10;
+    max-width: 400px;
+}
+
+.santo h2 {
+    font-family: 'EB Garamond', serif;
+    margin: 0;
+    font-size: 1.6rem;
+    color: var(--color-primario);
+}
+
+#descripcion-santo-del-dia {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #424242;
+}
+
+.santo_discreto {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.santo_discreto #descripcion-santo-del-dia {
+    margin-top: 0px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-secundario);
+}
+
+.nombre-difunto {
+    font-weight: 600;
+    color: var(--color-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* --- MENÚ PRINCIPAL --- */
+/*menu de escritorio*/
+.menu-principal {
+    background-color: var(--color-primario);
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.menu-principal a {
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
+
+/* Botón hamburguesa */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+
+/* MODO MÓVIL */
+@media (max-width: 768px) {
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+        margin-right: autoc;
+    }
+
+    .menu-principal {
+        display: none;
+        flex-direction: column;
+        background-color: inherit;
+        padding: 1rem;
+        border-top: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .menu-principal.activo {
+        display: flex;
+    }
+
+    .menu-principal a {
+        padding: 0.5rem 0;
+        font-size: 1.2rem;
+    }
+}
+
+
+/* --- BLOQUES DE CONTENIDO --- */
+.bloque {
+    background-color: var(--blanco-puro);
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 600px; /* Para que no se estire demasiado en PC */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px var(--sombra);
+    border: 2px solid var(--color-acento); /* Quitamos el borde oscuro para que sea más elegante */
+    text-align: center;
+}
+
+/* --- AJUSTES PARA BLOQUES CON IMAGEN 4:5 --- */
+
+.bloque-fondo {
+    /* Quitamos el padding del contenedor para que la capa oscura llegue a los bordes */
+    padding: 0 !important; 
+    background-size: cover;
+    background-position: center top; 
+    background-repeat: no-repeat;
+    position: relative;
+    color: var(--blanco-puro);
+    border-radius: 15px;
+    overflow: hidden;
+    
+    /* Proporción 4:5 - Ajustamos altura mínima para lucir la imagen */
+    min-height: 450px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Texto abajo para no tapar caras/arte arriba */
+    max-width: 600px;
+    margin: 2rem auto;
+    border: 2px solid var(--color-acento);
+}
+
+.capa-oscura {
+    /* Graduado: de negro muy sólido abajo a transparente arriba */
+    background: linear-gradient(to top, 
+        rgba(0,0,0,0.9) 0%, 
+        rgba(0,0,0,0.4) 50%, 
+        transparent 100%);
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bloque-fondo h3 {
+    font-family: 'EB Garamond', serif;
+    /* Reducido de 5rem a 2.5rem para que sea elegante y no tape la imagen */
+    font-size: 2.5rem !important; 
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--blanco-puro);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.bloque-fondo p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+/* Ajuste del botón sobre fondo de imagen */
+.bloque-fondo .boton {
+    background-color: var(--color-acento); /* Dorado para que resalte más */
+    color: var(--color-primario);
+    border: none;
+}
+
+.bloque-fondo .boton:hover {
+    background-color: var(--blanco-puro);
+    color: var(--color-primario);
+}
+
+/* --- SALMO DEL DÍA --- */
+
+.salmo {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-style: italic;
+    color: #444;
+    margin: 0;
+}
+
+.bloque ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.bloque li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 5px;
+}
+
+/* --- BOTONES --- */
+.boton {
+    display: inline-block;
+    background-color: var(--color-primario);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-hover);
+}
+
+/* --- RECURSOS (Enlaces abajo) --- */
+.recursos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 2rem;
+}
+
+.recursos a {
+    background: var(--color-secundario);
+    color: var(--color-primario);
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* --- ROSARIO --- */
+.contenedor_rosario {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(47, 58, 86, 0.1);
+    max-width: 700px;
+    margin: -30px auto 40px; /* Sube un poco sobre la cabecera */
+    position: relative;
+    z-index: 10;
+}
+
+.contenedor_rosario h3 {
+    font-family: 'EB Garamond', serif;
+    font-size: 2rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.controles-rosario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.btn-nav {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-nav:hover {
+    background-color: var(--color-acento);
+    transform: translateY(-2px);
+}
+
+.indicador-paso {
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-primario);
+}
+
+.imagen-misterio {
+    width: 100%;
+    border-radius: 15px;
+    transition: opacity 0.5s ease;
+    border: 5px solid var(--color-secundario);
+}
+
+#imagen-misterio {
+    transition: opacity 0.4s ease-in-out;
+    display: block;
+    margin: 0 auto;
+    border: 4px solid var(--color-acento); /* Ese E8A23A en acción */
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+}

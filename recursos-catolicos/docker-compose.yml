@@ -1,0 +1,31 @@
+services:
+  app:
+    image: php:8.2-apache
+    container_name: rc_app
+    restart: always
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=rc_user
+      - MYSQL_PASSWORD=tu_password_segura
+    networks:
+      - rc_network
+
+  db:
+    image: mariadb:10.11
+    container_name: rc_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: recursos_catolicos
+      MYSQL_USER: rc_user
+      MYSQL_PASSWORD: tu_password_segura
+      MYSQL_ROOT_PASSWORD: root_password_super_segura
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    networks:
+      - rc_network
+
+networks:
+  rc_network:
+    driver: bridge

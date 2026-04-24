@@ -10,65 +10,53 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body class="bg-black text-light">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm border-bottom border-secondary">
+            <div class="container-fluid">
+                <a class="navbar-brand font-weight-bold" href="index.html" style="font-family: 'Consolas', monospace;">
+                    <span class="text-primary">{</span>tatvil <span class="text-primary">}</span>
+                </a>
 
-   <!-- Header -->
-<header>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm border-bottom border-secondary">
-        <div class="container-fluid">
-
-            <!-- Logo -->
-            <a class="navbar-brand font-weight-bold" href="index.html" style="font-family: 'Consolas', monospace;">
-                <span class="text-primary">{</span>Aplicaciones de Vanguardia <span class="text-primary">}</span>
-            </a>
-
-             <!-- Botón móvil -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"
-                    aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Menú -->
-            <div class="collapse navbar-collapse justify-content-end" id="menuNav">
-                <ul class="navbar-nav">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="proyectos.html">Proyectos</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="habilidades.html">Habilidades</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="formacion.html">Formación</a>
-                    </li>
-<!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="experiencia.html">Experiencia</a>
-                    </li>
-                -->
-                </ul>
+                <a class="navbar-toggler" role="button" data-bs-toggle="collapse" data-bs-target="#menuNav" 
+                aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation" style="cursor: pointer;">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="menuNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="proyectos.html">Proyectos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="habilidades.html">Habilidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="formacion.html">Formación</a></li>
+                    </ul>
+                </div>
             </div>
-
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
     <section id="proyectos" class="py-5">
         <div class="container py-5">
             <h2 class="section-title mb-5">Proyectos en desarrollo</h2>
             
-            <div class="row g-4">
+            <div class="row g-4"> <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Oposiciones</h5>
+                            <p class="card-text text-muted">Temario y cuestionarios para TAI AGE</p>
+                            
+                            <div id="countdown" class="mb-2" ></div>
+                            
+                            <p class="card-text text-muted card-tecnologia">HTML, CSS, JS</p>
+                            <a href="oposiciones/index.html" class="btn-link">Saber más →</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-6 col-lg-4">
                     <div class="card project-card h-100">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Recursos Católicos</h5>
-                            <p class="card-text text-muted">Web de recursos católicos gratuitos (Rosario, oraciones, etc.).</p>
-                            <p class="card-text text-muted card-tecnologia">HTML, CSS, Bootstrap, JavaScript, PHP, SQL, XML, JSON.</p>
+                            <p class="card-text text-muted">Web de recursos católicos gratuitos.</p>
+                            <p class="card-text text-muted card-tecnologia">HTML, CSS, Bootstrap, JS, PHP, SQL.</p>
                             <a href="https://recursos-catolicos.es" class="btn-link">Saber más →</a>
                         </div>
                     </div>
@@ -78,8 +66,8 @@
                     <div class="card project-card h-100">
                         <div class="card-body">
                             <h5 class="card-title fw-bold">El Tiempo</h5>
-                            <p class="card-text text-muted">Guardo los datos del tiempo de 3 ciudades españolas que me interesan (Madrid, L'Ampolla (Tarragona), L'Alfas del Pi (Alicante)) con fines estadísticos. </p>
-                            <p class="card-text text-muted card-tecnologia">PHP, MySQL, HTML, CSS, JavaScript.</p>
+                            <p class="card-text text-muted">Estadísticas de Madrid, L'Ampolla y L'Alfas del Pi.</p>
+                            <p class="card-text text-muted card-tecnologia">PHP, MySQL, HTML, CSS, JS.</p>
                             <a href="eltiempo/index.html" class="btn-link">Saber más →</a>
                         </div>
                     </div>
@@ -87,54 +75,27 @@
 
                 <div class="col-md-6 col-lg-4">
                     <div class="card project-card h-100">
-
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Formula 1</h5>
                             <p class="card-text text-muted">Web de estadísticas de Fórmula 1.</p>
-                            <p class="card-text text-muted card-tecnologia">Java, Spring, Hibernate, JPA, MySQL, HTML, CSS, JavaScript.</p>
+                            <p class="card-text text-muted card-tecnologia">Java, Spring, Hibernate, MySQL.</p>
                             <a href="formula1/index.html" class="btn-link">Saber más →</a>
                         </div>
                     </div>
                 </div>
 
-
                 <div class="col-md-6 col-lg-4">
                     <div class="card project-card h-100">
-
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">Oposiciones</h5>
-                            <p class="card-text text-muted">Temario y cuestionarios para TAI AGE</p>
-                            <p class="card-text text-muted card-tecnologia">HTML, CSS</p>
-                            <a href="oposiciones/index.html" class="btn-link">Saber más →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card project-card h-100">
-
                         <div class="card-body">
                             <h5 class="card-title fw-bold">Piedra, Papel o Tijera</h5>
-                            <p class="card-text text-muted">El famoso juego Piedra, Papel o Tijera.</p>
-                            <p class="card-text text-muted card-tecnologia">HTML, CSS, JavaScript y optimizado para dispositivos móviles.</p>
+                            <p class="card-text text-muted">Juego clásico optimizado para móviles.</p>
+                            <p class="card-text text-muted card-tecnologia">HTML, CSS, JavaScript.</p>
                             <a href="piedra-papel-tijera.html" class="btn-link">Saber más →</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4">
-                    <div class="card project-card h-100">
-
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold">F1</h5>
-                            <p class="card-text text-muted">Pronosticos, estadisticas, resultados y noticias de Fórmula 1.</p>
-                            <p class="card-text text-muted card-tecnologia">HTML, CSS, JavaScript y optimizado para dispositivos móviles.</p>
-                            <a href="f1.html" class="btn-link">Saber más →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </div> </div>
     </section>
 
     <footer class="py-5 text-center">
@@ -144,5 +105,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    
+    <script src="js/codigo.js"></script> 
+    </body>
 </html>
