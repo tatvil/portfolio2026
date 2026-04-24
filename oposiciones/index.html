@@ -17,8 +17,26 @@
       <a href="index.html" class="active">Inicio</a>
       <a href="curso.html">Temario</a>
       <a href="cuestionarios/index.html">Cuestionarios</a>
+      <a href="noticias.html">Noticias</a>
     </nav>
   </nav>
+
+  <!-- ── Banner cambios INAP ──────────────────────────────── -->
+  <div id="inap-cambio-banner" class="inap-cambio-banner" style="display:none">
+    <div class="inap-cambio-inner">
+      <i class="fas fa-exclamation-circle"></i>
+      <div class="inap-cambio-txt">
+        <strong>¡La página de la convocatoria TAI ha cambiado!</strong>
+        <span>El INAP ha actualizado la información del proceso selectivo.</span>
+      </div>
+      <a class="inap-banner-link btn btn-primary" href="#" target="_blank" rel="noopener" style="white-space:nowrap">
+        <i class="fas fa-external-link-alt"></i> Ver cambios
+      </a>
+      <button class="inap-banner-close" onclick="cerrarBannerInap()" aria-label="Cerrar">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- ── Hero ──────────────────────────────────────────── -->
   <section class="home-hero">
@@ -61,6 +79,7 @@
     </div>
   </section>
 
+  <script src="js/inap-watch.js"></script>
   <script>
     (function () {
       const target = new Date('2026-05-23T00:00:00');

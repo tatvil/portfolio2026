@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAI – AGE | Noticias y Convocatorias</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Topbar ─────────────────────────────────────────── -->
+  <nav class="topbar">
+    <span class="topbar-brand"><i class="fas fa-graduation-cap"></i> TAI – AGE</span>
+    <nav class="topbar-nav">
+      <a href="index.html">Inicio</a>
+      <a href="curso.html">Temario</a>
+      <a href="cuestionarios/index.html">Cuestionarios</a>
+      <a href="noticias.html" class="active">Noticias</a>
+    </nav>
+  </nav>
+
+  <div class="noticias-layout" style="margin-top:calc(var(--topbar-h) + 2rem)">
+
+    <div class="noticias-header">
+      <h1><i class="fas fa-bell"></i> Noticias y Convocatorias</h1>
+      <p>Actualiza esta página para ver los últimos avisos del INAP, novedades del BOE y nuevas convocatorias de las CCAA.</p>
+    </div>
+
+    <!-- ── INAP – Convocatoria TAI ─────────────────────── -->
+    <section class="noticias-section">
+      <div class="noticias-section-hdr">
+        <h2><i class="fas fa-university"></i> INAP – Convocatoria TAI en curso</h2>
+        <span class="noticias-src-badge">inap.es</span>
+      </div>
+
+      <div class="inap-links-grid">
+        <a href="https://sede.inap.gob.es/es/procedimientos-y-servicios/seleccion/procesos-selectivos-de-cuerpos-y-escalas-generales/cuerpo-de-tecnicos-auxiliares-de-informatica-de-la-administracion-del-estado-ingreso-libre-convocatoria-2025" target="_blank" rel="noopener" class="inap-link-card inap-link-primary">
+          <i class="fas fa-bullhorn"></i>
+          <span>Convocatoria TAI – INAP</span>
+          <i class="fas fa-external-link-alt inap-ext"></i>
+        </a>
+        <a href="https://sede.inap.gob.es/es/procedimientos-y-servicios/seleccion/procesos-selectivos-de-cuerpos-y-escalas-generales" target="_blank" rel="noopener" class="inap-link-card">
+          <i class="fas fa-list-ul"></i>
+          <span>Procesos selectivos en curso</span>
+          <i class="fas fa-external-link-alt inap-ext"></i>
+        </a>
+        <a href="https://www.boe.es/buscar/doc.php?campo[0]=TITN&dato[0]=tai" target="_blank" rel="noopener" class="inap-link-card">
+          <i class="fas fa-search"></i>
+          <span>Buscar "TAI" en el BOE</span>
+          <i class="fas fa-external-link-alt inap-ext"></i>
+        </a>
+        <a href="https://www.boe.es/buscar/boe.php?campo[0]=TITN&dato[0]=tecnico+administracion+informatica&campo[1]=DDES&dato[1]=&field=todos&texto=&desde=&hasta=&sort_field[0]=fech&sort_order[0]=desc&accion=buscar" target="_blank" rel="noopener" class="inap-link-card">
+          <i class="fas fa-file-alt"></i>
+          <span>Resoluciones TAI en BOE</span>
+          <i class="fas fa-external-link-alt inap-ext"></i>
+        </a>
+      </div>
+
+      <div class="inap-info-box">
+        <i class="fas fa-info-circle"></i>
+        <p>El INAP publica actualizaciones de la convocatoria (listas provisionales, definitivas, llamamientos, fechas de examen) en su web oficial y en el BOE Sección II-B.
+           Revisa periódicamente la página de la convocatoria TAI o configura una alerta en el BOE para no perderte ninguna resolución.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── BOE – Oposiciones y concursos ──────────────── -->
+    <section class="noticias-section">
+      <div class="noticias-section-hdr">
+        <h2><i class="fas fa-newspaper"></i> BOE – Oposiciones y Concursos (AGE)</h2>
+        <span id="boe-fecha" class="noticias-src-badge">Cargando…</span>
+      </div>
+      <p class="noticias-section-desc">Últimas publicaciones de la Sección II-B del BOE (Oposiciones, concursos y vacantes). Las entradas relacionadas con TAI / informática se marcan en verde.</p>
+
+      <div id="boe-items" class="news-list">
+        <div class="news-loading"><i class="fas fa-spinner fa-spin"></i> Cargando noticias del BOE…</div>
+      </div>
+
+      <a href="https://www.boe.es/diario_boe/ultimos_dias.php" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1rem;font-size:.85rem">
+        <i class="fas fa-external-link-alt"></i> Ver BOE completo
+      </a>
+    </section>
+
+    <!-- ── Boletines CCAA ──────────────────────────────── -->
+    <section class="noticias-section">
+      <div class="noticias-section-hdr">
+        <h2><i class="fas fa-map-marked-alt"></i> Boletines Oficiales de las CCAA</h2>
+        <span class="noticias-src-badge">17 CCAA + Ceuta + Melilla</span>
+      </div>
+      <p class="noticias-section-desc">Acceso directo a los boletines oficiales autonómicos para consultar convocatorias de cuerpos de informática de cada comunidad.</p>
+
+      <div class="ccaa-grid">
+        <a href="https://www.juntadeandalucia.es/boja" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOJA</span>
+          <span class="ccaa-nombre">Andalucía</span>
+        </a>
+        <a href="https://www.boa.aragon.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOA</span>
+          <span class="ccaa-nombre">Aragón</span>
+        </a>
+        <a href="https://sede.asturias.es/bopa" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOPA</span>
+          <span class="ccaa-nombre">Asturias</span>
+        </a>
+        <a href="https://www.caib.es/boib" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOIB</span>
+          <span class="ccaa-nombre">Baleares</span>
+        </a>
+        <a href="https://www.gobiernodecanarias.org/librodigital/boc/" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOC</span>
+          <span class="ccaa-nombre">Canarias</span>
+        </a>
+        <a href="https://boc.cantabria.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOC</span>
+          <span class="ccaa-nombre">Cantabria</span>
+        </a>
+        <a href="https://docm.castillalamancha.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">DOCM</span>
+          <span class="ccaa-nombre">Castilla-La Mancha</span>
+        </a>
+        <a href="https://bocyl.jcyl.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOCYL</span>
+          <span class="ccaa-nombre">Castilla y León</span>
+        </a>
+        <a href="https://dogc.gencat.cat" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">DOGC</span>
+          <span class="ccaa-nombre">Cataluña</span>
+        </a>
+        <a href="https://doe.juntaex.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">DOE</span>
+          <span class="ccaa-nombre">Extremadura</span>
+        </a>
+        <a href="https://www.xunta.gal/dog" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">DOG</span>
+          <span class="ccaa-nombre">Galicia</span>
+        </a>
+        <a href="https://www.larioja.org/es/gobierno-rioja/boletines" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOR</span>
+          <span class="ccaa-nombre">La Rioja</span>
+        </a>
+        <a href="https://www.bocm.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOCM</span>
+          <span class="ccaa-nombre">Madrid</span>
+        </a>
+        <a href="https://www.borm.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BORM</span>
+          <span class="ccaa-nombre">Murcia</span>
+        </a>
+        <a href="https://bon.navarra.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BON</span>
+          <span class="ccaa-nombre">Navarra</span>
+        </a>
+        <a href="https://www.euskadi.eus/bopv" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOPV</span>
+          <span class="ccaa-nombre">País Vasco</span>
+        </a>
+        <a href="https://dogv.gva.es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">DOGV</span>
+          <span class="ccaa-nombre">C. Valenciana</span>
+        </a>
+        <a href="https://www.ceuta.es/ceuta/index.php/boletin-oficial" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOCCE</span>
+          <span class="ccaa-nombre">Ceuta</span>
+        </a>
+        <a href="https://www.melilla.es/melillaPortal/contenedor1.jsp?seccion=s_lofb_d4_v1.jsp&contenido=17547&nivel=1400&tipo=6&codResi=1&language=es" target="_blank" rel="noopener" class="ccaa-card">
+          <span class="ccaa-sigla">BOME</span>
+          <span class="ccaa-nombre">Melilla</span>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="js/noticias.js"></script>
+
+</body>
+</html>
