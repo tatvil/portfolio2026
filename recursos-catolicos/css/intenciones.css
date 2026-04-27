@@ -1,0 +1,112 @@
+/* CONTENEDOR */
+.contenedor-intenciones {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* FORMULARIO */
+.formulario-intencion {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.formulario-intencion input {
+    padding: 0.7rem;
+    width: 60%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* MURO DE HEXÁGONOS */
+.muro-hexagonos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* HEXÁGONO */
+.hexagono {
+    width: 120px;
+    height: 70px;
+    background: #ffffffaa;
+    position: relative;
+    cursor: pointer;
+    transition: transform .2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.hexagono:hover {
+    transform: scale(1.07);
+}
+
+.hexagono:before,
+.hexagono:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+}
+
+.hexagono:before {
+    bottom: 100%;
+    border-bottom: 35px solid #ffffffaa;
+}
+
+.hexagono:after {
+    top: 100%;
+    border-top: 35px solid #ffffffaa;
+}
+
+/* ICONO DENTRO DEL HEXÁGONO */
+.icono-intencion {
+    width: 40px;
+    height: 40px;
+    opacity: 0.9;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000088;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.visible {
+    display: flex;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 300px;
+}
+
+.cerrar {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.icono-modal {
+    width: 60px;
+    margin-bottom: 1rem;
+}
+
+.texto-modal {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}

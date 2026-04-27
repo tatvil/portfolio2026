@@ -87,7 +87,7 @@ La violencia de género no es violencia doméstica en general, sino una forma es
 
 ---
 
-### 🧠 Mini-resumen apartado 1
+### Mini-resumen apartado 1
 
 - Igualdad → **LO 3/2007**.  
 - Violencia de género → **LO 1/2004**.  
@@ -135,7 +135,7 @@ Por razón de:
 
 ---
 
-### 🧠 Mini-resumen apartado 2
+### Mini-resumen apartado 2
 
 - Norma clave → **Ley 4/2023**.  
 - Protege orientación, identidad y expresión de género.  
@@ -198,7 +198,7 @@ La ley crea el:
 
 ---
 
-### 🧠 Mini-resumen apartado 3
+### Mini-resumen apartado 3
 
 - Discapacidad → **RDL 1/2013** + art. 49 CE.  
 - Principios: igualdad, accesibilidad e inclusión.  
@@ -208,7 +208,7 @@ La ley crea el:
 
 ---
 
-## 🧠 Mini-resumen final del tema
+## Mini-resumen final del tema
 
 - Igualdad → **LO 3/2007**.  
 - Violencia de género → **LO 1/2004**.  

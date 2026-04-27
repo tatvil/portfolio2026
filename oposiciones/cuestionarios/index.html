@@ -2,34 +2,161 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cuestionarios TAI</title>
-  <link rel="stylesheet" href="css/estilos.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAI – AGE | Cuestionarios</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>Cuestionarios TAI</h1>
+  <!-- ── Topbar ─────────────────────────────────────────── -->
+  <nav class="topbar">
+    <span class="topbar-brand"><i class="fas fa-graduation-cap"></i> TAI – AGE</span>
+    <nav class="topbar-nav">
+      <a href="../index.html">Inicio</a>
+      <a href="../curso.html">Temario</a>
+      <a href="index.html" class="active">Cuestionarios</a>
+      <a href="../noticias.html">Noticias</a>
+    </nav>
+  </nav>
 
-  <select id="selector">
-    <option value="">Selecciona un examen</option>
-    <option value="data/TAI_2019.json">TAI 2019</option>
-    <option value="data/TAI_2023.json">TAI 2023</option>
-    <option value="data/TAI_2024A.json">TAI 2024 – Modelo A</option>
-    <option value="data/TAI_2024B.json">TAI 2024 – Modelo B</option>
-  </select>
+  <!-- ── Layout ────────────────────────────────────────── -->
+  <div class="quiz-layout" style="margin-top:calc(var(--topbar-h) + 1.5rem)">
 
-  <div id="quiz"></div>
+    <div class="quiz-header">
+      <h1><i class="fas fa-file-alt"></i> Cuestionarios TAI</h1>
+      <p>Exámenes reales de convocatorias anteriores (2019 – 2024).<br>
+         Fórmula AGE: <strong>Nota = (Aciertos − Fallos/3) / Total × 10</strong></p>
+    </div>
 
-  <!--<button id="corregir">Corregir</button>-->
-  <div id="resultado"></div>
+    <!-- Marcador -->
+    <div class="quiz-scoreboard">
+      <div class="score-chip aciertos">
+        <span class="val" id="val-aciertos">0</span>
+        <span class="lbl">Aciertos</span>
+      </div>
+      <div class="score-chip fallos">
+        <span class="val" id="val-fallos">0</span>
+        <span class="lbl">Fallos</span>
+      </div>
+      <div class="score-chip total">
+        <span class="val" id="val-progreso">0 / 0</span>
+        <span class="lbl">Progreso</span>
+      </div>
+      <div class="score-chip" style="border-color:var(--warning)">
+        <span class="val" id="val-nota" style="color:var(--warning)">—</span>
+        <span class="lbl">Nota est.</span>
+      </div>
+    </div>
 
-  <!--<button id="aleatoria">Pregunta aleatoria</button>-->
+    <!-- Controles -->
+    <div class="quiz-controls">
+      <select id="sel-examen" class="quiz-select">
+        <option value="">Selecciona un examen…</option>
+        <option value="data/TAI_2019.json">TAI 2019</option>
+        <option value="data/TAI_2023.json">TAI 2023</option>
+        <option value="data/TAI_2024A.json">TAI 2024 – Modelo A</option>
+        <option value="data/TAI_2024B.json">TAI 2024 – Modelo B</option>
+      </select>
+      <button id="btn-iniciar" class="btn btn-primary" disabled>
+        <i class="fas fa-play"></i> Iniciar
+      </button>
+    </div>
 
-<div id="pregunta-actual"></div>
+    <!-- PDFs del examen seleccionado -->
+    <div id="exam-pdfs" class="exam-pdfs" style="display:none"></div>
 
-<div id="feedback"></div>
+    <!-- Empty state -->
+    <div id="seccion-empty" class="empty-state">
+      <i class="fas fa-question-circle" style="color:var(--accent)"></i>
+      <p>Selecciona un examen y pulsa <strong>Iniciar</strong> para comenzar a practicar.</p>
+    </div>
 
+    <!-- Pregunta activa -->
+    <div id="seccion-quiz" style="display:none">
+      <div class="question-card">
+        <div class="question-num" id="pregunta-num">Pregunta 1 de …</div>
+        <div class="question-text" id="pregunta-txt"></div>
+        <div id="contexto-pregunta" class="supuesto-context" style="display:none"></div>
+        <ul class="options-list" id="opciones"></ul>
+        <div class="question-feedback" id="feedback"></div>
+      </div>
 
-  <script src="js/app.js"></script>
+      <div class="quiz-nav-row">
+        <button id="btn-siguiente" class="btn btn-primary" style="display:none">
+          Siguiente <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Selector de supuestos prácticos -->
+    <div id="seccion-supuesto-sel" style="display:none">
+      <div class="sup-sel-header">
+        <h2><i class="fas fa-clipboard-list"></i> Supuestos prácticos</h2>
+        <p>Has completado las preguntas tipo test. Ahora elige <strong>uno de los dos supuestos prácticos</strong> para practicarlo con su material de referencia.</p>
+      </div>
+      <div id="sup-cards" class="sup-cards-grid"></div>
+    </div>
+
+    <!-- Pantalla final -->
+    <div id="seccion-final" style="display:none">
+      <div class="final-screen">
+        <h2><i class="fas fa-flag-checkered"></i> ¡Examen completado!</h2>
+        <div class="final-score-big" id="final-nota">—</div>
+        <div class="final-score-sub">sobre 10 (fórmula AGE)</div>
+
+        <div class="quiz-scoreboard" style="margin:1.5rem 0">
+          <div class="score-chip aciertos">
+            <span class="val" id="final-aciertos">0</span>
+            <span class="lbl">Aciertos</span>
+          </div>
+          <div class="score-chip fallos">
+            <span class="val" id="final-fallos">0</span>
+            <span class="lbl">Fallos</span>
+          </div>
+          <div class="score-chip">
+            <span class="val" id="final-sin" style="color:var(--text-muted)">0</span>
+            <span class="lbl">Sin resp.</span>
+          </div>
+          <div class="score-chip total">
+            <span class="val" id="final-total">0</span>
+            <span class="lbl">Total</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="reiniciar()">
+            <i class="fas fa-redo"></i> Volver a intentarlo
+          </button>
+          <a href="../curso.html" class="btn btn-outline">
+            <i class="fas fa-book-open"></i> Repasar temario
+          </a>
+        </div>
+      </div>
+
+      <!-- Análisis de fallos -->
+      <div id="repaso-wrap" class="repaso-wrap" style="display:none"></div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function reiniciar() {
+      ['seccion-final','seccion-quiz','seccion-supuesto-sel'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
+      document.getElementById('seccion-empty').style.display = 'block';
+      document.getElementById('sel-examen').value = '';
+      document.getElementById('btn-iniciar').disabled = true;
+      document.getElementById('btn-iniciar').innerHTML = '<i class="fas fa-play"></i> Iniciar';
+      ['val-aciertos','val-fallos'].forEach(id => document.getElementById(id).textContent = '0');
+      document.getElementById('val-progreso').textContent = '0 / 0';
+      document.getElementById('val-nota').textContent = '—';
+    }
+  </script>
+  <script src="js/quiz.js"></script>
+
 </body>
 </html>

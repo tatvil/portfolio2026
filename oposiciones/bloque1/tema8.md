@@ -29,7 +29,7 @@ Están obligados a relacionarse electrónicamente, entre otros:
 - Profesionales colegiados para trámites derivados de su actividad.
 - Empleados públicos en el ejercicio de sus funciones.
 
-### 🧠 Mini-resumen apartado 1
+### Mini-resumen apartado 1
 
 - Derecho general de acceso electrónico.
 - Determinados sujetos están obligados.
@@ -53,7 +53,7 @@ Debe garantizar:
 - Integridad de la información.
 - Disponibilidad y accesibilidad permanente.
 
-### 🧠 Mini-resumen apartado 2
+### Mini-resumen apartado 2
 
 - Uso obligatorio de medios electrónicos.
 - La sede electrónica es el punto de acceso seguro.
@@ -74,7 +74,7 @@ Permite:
 - La fecha y hora oficial determina el cómputo de plazos.
 - Los registros electrónicos se rigen por la fecha y hora oficial de la sede.
 
-### 🧠 Mini-resumen apartado 3
+### Mini-resumen apartado 3
 
 - Registro electrónico general obligatorio.
 - Presentación 24/7.
@@ -94,10 +94,10 @@ En determinados casos son obligatorias.
 - La notificación se entiende practicada cuando se accede a su contenido.
 - Si no se accede en **10 días naturales**, se entiende rechazada.
 
-👉 Muy típico de examen:
+**Muy típico de examen:**
 Rechazo por inacción tras 10 días.
 
-### 🧠 Mini-resumen apartado 4
+### Mini-resumen apartado 4
 
 - Notificación preferente u obligatoria.
 - Rechazo automático a los 10 días.
@@ -124,7 +124,7 @@ Se aplica a:
 - Proporcionalidad.
 - Mejora continua.
 
-### 🧠 Mini-resumen apartado 5
+### Mini-resumen apartado 5
 
 - ENS = seguridad de la información.
 - Aplicable al sector público.
@@ -145,7 +145,7 @@ El ENI establece:
 - Interoperabilidad técnica.
 - Reutilización y cooperación.
 
-### 🧠 Mini-resumen apartado 6
+### Mini-resumen apartado 6
 
 - ENI = intercambio de información.
 - Garantiza interoperabilidad entre Administraciones.

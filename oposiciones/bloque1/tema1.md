@@ -8,7 +8,7 @@ Todo lo que hacen los poderes públicos —Gobierno, Cortes Generales, jueces, a
 
 Su finalidad es **organizar el Estado**, **garantizar la convivencia**, asegurar la **libertad**, la **igualdad**, y reconocer un sistema político basado en el **pluralismo** y la **participación ciudadana**.
 
-**Características de la constitución**: Escrita y codificada, extensa, origen popular, rígida, Consensuada y elástica, abierta e inacabada.
+**Características de la constitución**: Escrita y codificada, extensa, origen popular, rígida, Consensuada y elástica, abierta e inacabada, monárquica,
 
 ### *1.1. Estructura de la Constitución Española*
 
@@ -515,7 +515,3 @@ Corresponde al Rey:
 1. El Rey recibe de los Presupuestos del Estado una cantidad global para el sostenimiento de su Familia y Casa, y distribuye libremente la misma.
 2. El Rey nombra y releva libremente a los miembros civiles y militares de su Casa.
 
-Perfecto, lo he visto claro 👍
-Te dejo el bloque de la Reforma Constitucional ya integrado dentro del Tema 1, con la misma numeración, tono y estilo que llevas, para que lo pegues directamente sin romper coherencia.
-
-👉 Mi recomendación es colocarlo después de la estructura de la Constitución y antes de entrar en el desarrollo detallado del Título I, porque así “cierras” la visión general de la CE.

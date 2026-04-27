@@ -1,105 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="tatianalogo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/estilos.css">
-    <title>Temario TAI – AGE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAI – AGE | Temario oposición</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow-sm border-bottom border-secondary">
-        <div class="container-fluid">
-
-            <!-- Logo -->
-            <a class="navbar-brand font-weight-bold" href="index.html" style="font-family: 'Consolas', monospace;">
-                <span class="text-primary">{</span>Técnico Auxiliar Informático<span class="text-primary">}</span> Admin. del Estado
-            </a>
-
-             <!-- Botón móvil -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"
-                    aria-controls="menuNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Menú -->
-            <div class="collapse navbar-collapse justify-content-end" id="menuNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Temario</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cuestionarios/index.html">Cuestionarios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://tatvil.github.io/apuntes-taiage/">apuntes.md</a></li>
-                </ul>
-            </div>
-
-        </div>
+  <!-- ── Topbar ─────────────────────────────────────────── -->
+  <nav class="topbar">
+    <span class="topbar-brand"><i class="fas fa-graduation-cap"></i> TAI – AGE</span>
+    <nav class="topbar-nav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="curso.html">Temario</a>
+      <a href="cuestionarios/index.html">Cuestionarios</a>
+      <a href="noticias.html">Noticias</a>
     </nav>
+  </nav>
 
-    </header>
+  <!-- ── Banner cambios INAP ──────────────────────────────── -->
+  <div id="inap-cambio-banner" class="inap-cambio-banner" style="display:none">
+    <div class="inap-cambio-inner">
+      <i class="fas fa-exclamation-circle"></i>
+      <div class="inap-cambio-txt">
+        <strong>¡La página de la convocatoria TAI ha cambiado!</strong>
+        <span>El INAP ha actualizado la información del proceso selectivo.</span>
+      </div>
+      <a class="inap-banner-link btn btn-primary" href="#" target="_blank" rel="noopener" style="white-space:nowrap">
+        <i class="fas fa-external-link-alt"></i> Ver cambios
+      </a>
+      <button class="inap-banner-close" onclick="cerrarBannerInap()" aria-label="Cerrar">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
 
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="home-hero">
+    <h1><i class="fas fa-laptop-code"></i> Temario TAI – AGE</h1>
+    <p>Técnico/a en Informática – Administración General del Estado.<br>
+       Todos los bloques, todos los temas. Sin filtros.</p>
 
-<h2>I – <a href="bloque1/bloque1.html">Organización del Estado y Administración electrónica</a></h2>
+    <div class="home-stats">
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-lbl">Bloques</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">33</div>
+        <div class="stat-lbl">Temas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-lbl">Exámenes reales</div>
+      </div>
+    </div>
 
-<ol>
-    <li><a href="bloque1/tema1.html">La Constitución Española de 1978. Derechos y deberes fundamentales. Su garantía y suspensión. La Corona: funciones constitucionales del Rey.</a></li>
-    <li><a href="bloque1/tema2.html">Las Cortes Generales: atribuciones del Congreso de los Diputados y del Senado. El Tribunal Constitucional: composición y atribuciones. El Defensor del Pueblo.</a></li>
-    <li><a href="bloque1/tema3.html">El Gobierno: composición, nombramiento y cese. Las funciones del Gobierno. Relaciones entre el Gobierno y las Cortes Generales.</a></li>
-    <li><a href="bloque1/tema4.html">Estatuto Básico del Empleado Público: derechos y deberes, provisión de puestos, promoción interna, carrera profesional, situaciones administrativas, incompatibilidades y régimen sancionador. Ley 19/2013 de transparencia. Agenda 2030 y ODS.</a></li>
-    <li><a href="bloque1/tema5.html">Políticas de igualdad y contra la violencia de género. Igualdad LGTBI. Discapacidad y dependencia.</a></li>
-    <li><a href="bloque1/tema6.html">Sociedad de la información. Identidad y firma electrónica. DNIe. Agenda Digital para España.</a></li>
-    <li><a href="bloque1/tema7.html">Protección de datos personales: principios, derechos y obligaciones. Derechos digitales.</a></li>
-    <li><a href="bloque1/tema8.html">Acceso electrónico a los servicios públicos. Registros, notificaciones, medios electrónicos. ENS y ENI. NTI.</a></li>
-    <li><a href="bloque1/tema9.html">Instrumentos de acceso electrónico: sedes electrónicas, canales, identificación y autenticación. Infraestructuras y servicios comunes.</a></li>
-</ol>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="curso.html" class="btn btn-primary"><i class="fas fa-play"></i> Empezar el temario</a>
+      <a href="cuestionarios/index.html" class="btn btn-outline"><i class="fas fa-question-circle"></i> Practicar exámenes</a>
+    </div>
 
-<hr>
+    <!-- Cuenta atrás -->
+    <div class="countdown-wrap">
+      <div class="countdown-label"><i class="fas fa-calendar-alt"></i> Examen TAI · 23 de mayo de 2026</div>
+      <div class="countdown-units" id="countdown">
+        <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-lbl">días</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-lbl">horas</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-lbl">min</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-lbl">seg</span></div>
+      </div>
+    </div>
+  </section>
 
-<h2>II – <a href="bloque2/bloque2.html">Tecnología básica</a></h2>
+  <script src="js/inap-watch.js"></script>
+  <script>
+    (function () {
+      const target = new Date('2026-05-23T00:00:00');
+      function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+          document.getElementById('countdown').innerHTML = '<span style="color:var(--accent);font-size:1.4rem">¡Hoy es el día! 🎯</span>';
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent  = String(d).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+        document.getElementById('cd-mins').textContent  = String(m).padStart(2, '0');
+        document.getElementById('cd-secs').textContent  = String(s).padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 
-<ol>
-    <li><a href="bloque2/tema1.html">Informática básica. Representación y comunicación de la información: elementos constitutivos de un sistema de información. Características y funciones. Arquitectura de ordenadores. Componentes internos de los equipos microinformáticos.</a></li>
-    <li><a href="bloque2/tema2.html">Periféricos: conectividad y administración. Elementos de impresión. Elementos de almacenamiento. Elementos de visualización y digitalización.</a></li>
-    <li><a href="bloque2/tema3.html">Tipos abstractos y Estructuras de datos. Organizaciones de ficheros. Algoritmos. Formatos de información y ficheros.</a></li>
-    <li><a href="bloque2/tema4.html">Sistemas operativos. Características y elementos constitutivos. Sistemas Windows. Sistemas Unix y Linux. Sistemas operativos para dispositivos móviles.</a></li>
-    <li><a href="bloque2/tema5.html">Sistemas de gestión de bases de datos relacionales, orientados a objetos y NoSQL: características y componentes.</a></li>
-</ol>
+  <!-- ── Bloques ────────────────────────────────────────── -->
+  <section class="bloques-section">
+    <h2>Bloques del temario</h2>
+    <div class="bloques-grid">
 
-<hr>
+      <article class="bloque-card" onclick="location.href='curso.html?bloque=1&tema=1'">
+        <div class="bloque-num">Bloque I</div>
+        <h3>Organización del Estado y Administración electrónica</h3>
+        <p>Constitución, EBEP, igualdad, identidad digital, protección de datos, sede electrónica.</p>
+        <ul class="bloque-temas-list">
+          <li>T1 – Constitución Española de 1978</li>
+          <li>T2 – Cortes Generales y Tribunal Constitucional</li>
+          <li>T3 – El Gobierno</li>
+          <li>T4 – EBEP, transparencia y ODS</li>
+          <li>T5 – Igualdad y discapacidad</li>
+          <li>T6 – Sociedad de la información e identidad digital</li>
+          <li>T7 – Protección de datos</li>
+          <li>T8 – Acceso electrónico a los servicios públicos</li>
+          <li>T9 – Sedes e infraestructuras electrónicas</li>
+        </ul>
+      </article>
 
-<h2>III – <a href="bloque3/bloque3.html">Desarrollo de sistemas</a></h2>
+      <article class="bloque-card" onclick="location.href='curso.html?bloque=2&tema=1'">
+        <div class="bloque-num">Bloque II</div>
+        <h3>Tecnología básica</h3>
+        <p>Hardware, periféricos, estructuras de datos, sistemas operativos, BBDD.</p>
+        <ul class="bloque-temas-list">
+          <li>T1 – Informática básica y arquitectura</li>
+          <li>T2 – Periféricos y almacenamiento</li>
+          <li>T3 – Tipos de datos y algoritmos</li>
+          <li>T4 – Sistemas operativos</li>
+          <li>T5 – Sistemas gestores de BBDD</li>
+        </ul>
+      </article>
 
-<ol>
-    <li><a href="bloque3/tema1.html">Modelado de datos, metodologías y reglas. Entidades, atributos y relaciones. Diseño de bases de datos. Diseño lógico y físico. El modelo lógico relacional. Normalización.</a></li>
-    <li><a href="bloque3/tema2.html">Lenguajes de programación. Representación de tipos de datos. Operadores. Instrucciones condicionales. Bucles y recursividad. Procedimientos, funciones y parámetros. Vectores y registros. Estructura de un programa.</a></li>
-    <li><a href="bloque3/tema3.html">Lenguajes de interrogación de bases de datos. Estándar ANSI SQL. Procedimientos almacenados. Eventos y disparadores.</a></li>
-    <li><a href="bloque3/tema4.html">Diseño y programación orientada a objetos. Elementos y componentes software: objetos, clases, herencia, métodos, sobrecarga. Ventajas e inconvenientes. Patrones de diseño y lenguaje de modelado unificado (UML).</a></li>
-    <li><a href="bloque3/tema5.html">Arquitectura Java EE/Jakarta EE y plataforma .NET: componentes, persistencia y seguridad. Características, elementos, lenguajes y funciones en ambos entornos. Desarrollo de interfaces.</a></li>
-    <li><a href="bloque3/tema6.html">Arquitectura de sistemas cliente/servidor y multicapas: componentes y operación. Arquitecturas de servicios web y protocolos asociados.</a></li>
-    <li><a href="bloque3/tema7.html">Aplicaciones web. Desarrollo web front-end y en servidor, multiplataforma y multidispositivo. Lenguajes: HTML, XML y sus derivaciones. Navegadores y lenguajes de programación web. Lenguajes de script.</a></li>
-    <li><a href="bloque3/tema8.html">Accesibilidad, diseño universal y usabilidad. Acceso y usabilidad de las tecnologías, productos y servicios relacionados con la sociedad de la información. Confidencialidad y disponibilidad de la información en puestos de usuario final. Conceptos de seguridad en el desarrollo de los sistemas.</a></li>
-    <li><a href="bloque3/tema9.html">Repositorios: estructura y actualización. Generación de código y documentación. Metodologías de desarrollo. Pruebas. Programas para control de versiones. Plataformas de desarrollo colaborativo de software.</a></li>
-</ol>
+      <article class="bloque-card" onclick="location.href='curso.html?bloque=3&tema=1'">
+        <div class="bloque-num">Bloque III</div>
+        <h3>Desarrollo de sistemas</h3>
+        <p>Modelado de datos, SQL, POO, Java EE, web, UML, pruebas y control de versiones.</p>
+        <ul class="bloque-temas-list">
+          <li>T1 – Modelado y diseño de BBDD</li>
+          <li>T2 – Lenguajes de programación</li>
+          <li>T3 – SQL y procedimientos almacenados</li>
+          <li>T4 – POO y patrones de diseño</li>
+          <li>T5 – Java EE / .NET</li>
+          <li>T6 – Arquitecturas cliente/servidor y web services</li>
+          <li>T7 – Desarrollo web front-end y back-end</li>
+          <li>T8 – Accesibilidad y seguridad en desarrollo</li>
+          <li>T9 – Repositorios y metodologías</li>
+        </ul>
+      </article>
 
-<hr>
+      <article class="bloque-card" onclick="location.href='curso.html?bloque=4&tema=1'">
+        <div class="bloque-num">Bloque IV</div>
+        <h3>Sistemas y comunicaciones</h3>
+        <p>Administración de SO, BBDD, correo, redes, seguridad, TCP/IP, Internet, VPN.</p>
+        <ul class="bloque-temas-list">
+          <li>T1 – Administración del SO</li>
+          <li>T2 – Administración de BBDD y virtualización</li>
+          <li>T3 – Servidores de correo y contenedores</li>
+          <li>T4 – Administración de redes de área local</li>
+          <li>T5 – Seguridad de sistemas</li>
+          <li>T6 – Comunicaciones y redes</li>
+          <li>T7 – Modelos TCP/IP y OSI</li>
+          <li>T8 – Internet y HTTP/S</li>
+          <li>T9 – Seguridad perimetral y VPN</li>
+          <li>T10 – Redes locales</li>
+        </ul>
+      </article>
 
-<h2>IV – <a href="bloque4/bloque4.html">Sistemas y comunicaciones</a></h2>
+    </div>
+  </section>
 
-<ol>
-    <li><a href="bloque4/tema1.html">Administración del Sistema operativo y software de base. Actualización, mantenimiento y reparación del sistema operativo.</a></li>
-    <li><a href="bloque4/tema2.html">Administración de bases de datos. Sistemas de almacenamiento y su virtualización. Políticas, sistemas y procedimientos de backup y su recuperación. Backup de sistemas físicos y virtuales. Virtualización de sistemas y virtualización de puestos de usuario.</a></li>
-    <li><a href="bloque4/tema3.html">Administración de servidores de correo electrónico y sus protocolos. Administración de contenedores y microservicios.</a></li>
-    <li><a href="bloque4/tema4.html">Administración de redes de área local. Gestión de usuarios. Gestión de dispositivos. Monitorización y control de tráfico.</a></li>
-    <li><a href="bloque4/tema5.html">Conceptos de seguridad de los sistemas de información. Seguridad física. Seguridad lógica. Amenazas y vulnerabilidades. Técnicas criptográficas y protocolos seguros. Mecanismos de firma digital. Infraestructura física de un CPD: acondicionamiento y equipamiento. Sistemas de gestión de incidencias. Control remoto de puestos de usuario.</a></li>
-    <li><a href="bloque4/tema6.html">Comunicaciones. Medios de transmisión. Modos de comunicación. Equipos terminales y equipos de interconexión y conmutación. Redes de comunicaciones. Redes de conmutación y redes de difusión. Comunicaciones móviles e inalámbricas.</a></li>
-    <li><a href="bloque4/tema7.html">El modelo TCP/IP y el modelo de referencia de interconexión de sistemas abiertos (OSI) de ISO. Protocolos TCP/IP.</a></li>
-    <li><a href="bloque4/tema8.html">Internet: arquitectura de red. Origen, evolución y estado actual. Principales servicios. Protocolos HTTP, HTTPS y SSL/TLS.</a></li>
-    <li><a href="bloque4/tema9.html">Seguridad y protección en redes de comunicaciones. Seguridad perimetral. Acceso remoto seguro a redes. Redes privadas virtuales (VPN). Seguridad en el puesto del usuario.</a></li>
-    <li><a href="bloque4/tema10.html">Redes locales. Tipología. Técnicas de transmisión. Métodos de acceso. Dispositivos de interconexión.</a></li>
-</ol>
+  <!-- ── Cuestionarios banner ───────────────────────────── -->
+  <section class="quiz-card">
+    <div class="quiz-banner">
+      <div class="quiz-banner-icon"><i class="fas fa-file-alt" style="color:var(--accent)"></i></div>
+      <div>
+        <h3>Exámenes reales TAI (2019 – 2024)</h3>
+        <p>Practica con preguntas de convocatorias anteriores: TAI 2019, TAI 2023, TAI 2024 A y B.</p>
+      </div>
+      <a href="cuestionarios/index.html" class="btn btn-primary">
+        <i class="fas fa-play"></i> Practicar ahora
+      </a>
+    </div>
+  </section>
 
 </body>
 </html>
