@@ -148,6 +148,31 @@ body {
     font-weight: 600;
 }
 
+/* Card color variants */
+.card-green  { border-top: 3px solid #4ade80 !important; }
+.card-green  .card-title { color: #4ade80; }
+.card-green  .btn-link   { color: #4ade80; }
+
+.card-amber  { border-top: 3px solid #fbbf24 !important; }
+.card-amber  .card-title { color: #fbbf24; }
+.card-amber  .btn-link   { color: #fbbf24; }
+
+.card-sky    { border-top: 3px solid #38bdf8 !important; }
+.card-sky    .card-title { color: #38bdf8; }
+.card-sky    .btn-link   { color: #38bdf8; }
+
+.card-red    { border-top: 3px solid #f87171 !important; }
+.card-red    .card-title { color: #f87171; }
+.card-red    .btn-link   { color: #f87171; }
+
+.card-violet  { border-top: 3px solid #c084fc !important; }
+.card-violet  .card-title { color: #c084fc; }
+.card-violet  .btn-link   { color: #c084fc; }
+
+.card-orange  { border-top: 3px solid #fb923c !important; }
+.card-orange  .card-title { color: #fb923c; }
+.card-orange  .btn-link   { color: #fb923c; }
+
 .btn-link:hover {
     color: var(--color-texto);
 }
